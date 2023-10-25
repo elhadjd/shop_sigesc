@@ -6,10 +6,9 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { CartServices } from './services'
 import { useStateProgressContext } from '@/app/contexts/progress' 
 import Link from 'next/link'
-import { useEffect } from 'react'
 
 export default function Cart() {
-    const {ListOrder,setStateShow} = useRequestCardContext()
+    const {client,setStateShow} = useRequestCardContext()
     const {removeItem} = CartServices()
     const {progress,state} = useStateProgressContext()
     return (
@@ -24,9 +23,9 @@ export default function Cart() {
                 </div>
                 <div className='flex flex-col overflow-auto scroll-m-0 snap-y p-4 h-[75%] space-y-3'>
                     {
-                        ListOrder.invoice_items.map((item,index)=>(
+                        client.invoices.invoice_items.map((item,index)=>(
                         <div key={index} className='flex h-26 scroll-ms-6 snap-end items-center space-x-2 p-1 drop-shadow-lg rounded bg-white'>
-                            <img src={`/products/img/imag1.png`} alt="" className=' w-[55px] rounded'/>
+                            <img src={`https://geral.sisgesc.net/produtos/image/${item.produto.image}`} alt="" className=' w-[55px] rounded'/>
                             <div className='flex flex-col w-64 between'>
                                 <span>{item.produto.nome}</span>
                                 <div className='flex justify-around w-full'>
@@ -45,14 +44,14 @@ export default function Cart() {
                         ))
                     }
                 </div>
-                <div className='flex flex-wrap w-3/4 space-x-4 justify-stretch absolute bottom-0 bg-white right-0 h-20 w-full p-3 items-center'>
-                    <div className='flex flex-col'>
+                <div className='flex space-x-4 justify-stretch absolute bottom-0 bg-white right-0 h-20 w-full p-3 items-center'>
+                    <div className='flex flex-col w-1/2'>
                         <strong className='flex'>
                             Total:
                         </strong>
-                        <h3 className='text-lg font-bold text-blue-950'>{formatToKwanza(ListOrder.TotalInvoice)}</h3>
+                        <h3 className='text-lg font-bold'>{formatToKwanza(client.invoices.TotalInvoice)}</h3>
                     </div>
-                    <Link href={'/checkout'} className='flex-auto justify-center items-center bg-red-700 p-3 rounded text-white font-bold'>Finalizar compra</Link>
+                    <Link href={'/checkout'} className='flex w-1/2 justify-center items-center bg-red-700 p-3 rounded text-white font-bold'>Finalizar compra</Link>
                 </div>
             </div>
         </div>

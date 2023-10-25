@@ -36,7 +36,7 @@ export default function FooterBottom() {
           <span className="flex text-lg font-sm uppercase">Categorias</span>
           <div className="flex space-y-1 flex-col">
             {categories.map((category, index) => (
-              <Link href={"#"} className="text-sm py-1 font-base">
+              <Link href={"#"} key={index} className="text-sm py-1 font-base">
                 {category.name}
               </Link>
             ))}

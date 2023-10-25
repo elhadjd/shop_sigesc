@@ -17,20 +17,20 @@ export interface ItemInvoice {
   }
   
   export interface TypeInvoice {
-    id: number;
-    orderNumber: string;
-    company_id: number;
-    user_id: number;
-    cliente_id: number;
-    TotalInvoice: number;
-    discount: number;
-    TotalMerchandise: number;
-    tax: number;
-    state: string;
-    DateOrder: string;
-    DateDue: string;
-    RestPayable: number;
-    invoice_items: ItemInvoice[]
+  id: number;
+  orderNumber: string;
+  company_id: number;
+  user_id: number;
+  cliente_id: number;
+  TotalInvoice: number;
+  discount: number;
+  TotalMerchandise: number;
+  tax: number;
+  state: string;
+  DateOrder: string;
+  DateDue: string;
+  RestPayable: number;
+  invoice_items: ItemInvoice[]
 }
 
 export interface Product{

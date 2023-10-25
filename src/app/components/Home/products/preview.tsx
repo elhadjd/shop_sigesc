@@ -43,7 +43,7 @@ export default function PreviewProducts() {
               className="h-full flex-col hover:cursor-pointer hover:border-blue-950 space-y-2 border rounded p-3"
             >
               <span className="flex h-80 w-full justify-center items-center">
-                <img className="h-80" src={`/products/img/imag1.png`} alt={product.nome} />
+                <img className="h-auto" src={`https://geral.sisgesc.net/produtos/image/${product.image}`} alt={product.nome} />
               </span>
               {product.nome && (
                 <div className="absolute top-10 p-2 rounded bg-red-100 text-red-700 right-0 w-40 truncate origin-center rotate-45">

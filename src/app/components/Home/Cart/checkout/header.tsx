@@ -8,31 +8,38 @@ import { toast } from 'react-toastify'
 import { CheckoutServices } from './services'
 import { useRequestCardContext } from '@/app/contexts/cardContrext'
 import { useCheckoutContext } from '@/app/contexts/checkout'
-import { useStateProgressContext } from '@/app/contexts/progress'
 import { CartServices } from '../services'
+import { getCookie, setCookie } from 'cookies-next'
+import { Checkout } from '@/app/types/checkout'
+import { ClientTypeScript } from '@/app/types/client'
 
 export default function HeaderCheckout() {
   const {steps} = CheckoutServices()
   const { setCheckout, checkout} = useCheckoutContext()
-  const {ListOrder} = useRequestCardContext()
+  const {client} = useRequestCardContext()
   const {getInvoice} = CartServices()
 
   
   useEffect(()=>{
     (async()=>{
       await getInvoice()
-      const checkoutStore = JSON.parse(localStorage.getItem('checkout'))      
-      if(checkoutStore.invoice_items.length){
+      const checkoutStore:Checkout = JSON.parse(getCookie('checkout') || JSON.stringify(checkout))      
+      if(client.invoices.invoice_items.length<=0){
         toast.info('Não tem produtos no carrinho ',{
           position: "top-right",
           onOpen: (()=>{
             return redirect('/products')
           })
         })
-      }      
+      }
       
-      if (checkoutStore != null) {
-        setCheckout({...checkoutStore})
+      if (checkoutStore.client.invoices.id != 0) {
+        const clientStore: ClientTypeScript = JSON.parse(getCookie('client') || JSON.stringify(client))
+        checkout.client = clientStore
+        console.log(clientStore);
+        
+        setCheckout({...checkoutStore})        
+        return setCookie('checkout',checkout)
       }
     })()
   },[])

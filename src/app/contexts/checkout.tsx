@@ -20,24 +20,18 @@ interface checkoutProviderProps {
 }
 
 export const CheckoutProvider:React.FC<checkoutProviderProps> = (({children})=>{
-    const {ListOrder} = useRequestCardContext()
+    const {client} = useRequestCardContext()
     const [checkout,setCheckout] = useState<Checkout>({
         step: 0,
         delivery: {
           city: '',
-          country: '',
+          county: '',
           housNumber: '',
           neighborhood: '',
-          road: ''
+          road: '',
+          comment: ''
         },
-        information: {
-          email: '',
-          name: '',
-          note: '',
-          phone: '',
-          surname: '',
-        },
-        invoice: ListOrder,
+        client: client
       })
     return (
         <globalCheckout.Provider value={{checkout,setCheckout}}>

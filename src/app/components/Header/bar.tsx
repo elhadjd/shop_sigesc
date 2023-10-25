@@ -12,7 +12,7 @@ import {RiArrowDownSLine} from 'react-icons/ri'
 import { CartServices } from "../Home/Cart/services";
 
 export default function Bar() {
-  const {setStateShow,ListOrder} = useRequestCardContext()
+  const {setStateShow,client} = useRequestCardContext()
   const {getInvoice} = CartServices()
   const {openMenu,stateMenu,closeMenu} = NavBarService()
   useEffect(()=>{
@@ -59,7 +59,7 @@ export default function Bar() {
         <span onClick={()=>setStateShow(true)} className="relative flex items-center hover:cursor-pointer">
           <BiShoppingBag className="absolute right-3 text-2xl" />
           <span className="bg-red-700 z-10 text-white h-5 w-5 flex items-center justify-center rounded-full">
-            {ListOrder.invoice_items.length | 0}
+            {client.invoices.invoice_items.length | 0}
           </span>
         </span>
         <button className="min-[1080px]:hidden text-xxl font-xl" onClick={openMenu}>

@@ -1,4 +1,5 @@
 import { TypeInvoice } from "."
+import { ClientTypeScript } from "./client"
 
 export interface StepsType{
     id: number,
@@ -6,23 +7,15 @@ export interface StepsType{
 }
 export interface Checkout{
     step: number,
-    invoice: TypeInvoice,
-    information: InformationCheckout,
+    client: ClientTypeScript,
     delivery: Delivery,
 }
 
-export interface InformationCheckout{
-    email: string,
-    surname: string,
-    name: string,
-    phone: string,
-    note: string
-}
-
 export interface Delivery{
-    country: string,
     city: string,
+    county: string,
     neighborhood: string,
     road: string,
-    housNumber: string
+    housNumber: string,
+    comment: string
 }

@@ -17,7 +17,7 @@ export default function ListProducts() {
                 className="flex-col w-80 hover:cursor-pointer m-2 hover:border-blue-950 space-y-2 border rounded p-3"
                 >
                     <span className="flex h-80 w-full justify-center items-center">
-                        <img className="h-80 w-full px-7" src={`/products/img/imag1.png`} alt={product.nome} />
+                        <img className="h-80 w-full px-7" src={`https://geral.sisgesc.net/produtos/image/${product.image}`} alt={product.nome} />
                     </span>
                     <div className="flex flex-col space-y-1">
                         <span className="font-base font-normal truncate justify-center">

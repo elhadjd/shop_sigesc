@@ -1,10 +1,14 @@
 "use client"
-import { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { TypeInvoice } from '../types';
+import { ClientTypeScript } from '../types/client';
+import { getCookie } from 'cookies-next';
 
 const GlobalCardRequest = createContext<{
   stateShow: boolean,
   setStateShow: React.Dispatch<boolean>,
+  client: ClientTypeScript,
+  setClient: React.Dispatch<React.SetStateAction<ClientTypeScript>>
   ListOrder: TypeInvoice;
   setListOrder: React.Dispatch<React.SetStateAction<TypeInvoice>>;
 } | undefined>(undefined);
@@ -38,9 +42,26 @@ export const RequestCardProvider: React.FC<RequestCardProviderProps> = ({ childr
     TotalMerchandise:0,
     user_id:0
   });
+  const clientStore:ClientTypeScript = JSON.parse(getCookie('client')|| JSON.stringify({
+    city: '',
+    company_id: 0,
+    country: '',
+    email: '',
+    id: 0,
+    image: '',
+    invoices: ListOrder,
+    name: '',
+    password: '',
+    phone: '',
+    rua: '',
+    state: '',
+    surname: '',
+    whatssap: ''
+  }))
+  const [client,setClient] = useState<ClientTypeScript>({...clientStore})
   const [stateShow, setStateShow] = useState<boolean>(false)
   return (
-    <GlobalCardRequest.Provider value={{ ListOrder, setListOrder,stateShow,setStateShow }}>
+    <GlobalCardRequest.Provider value={{ ListOrder, setListOrder,stateShow,setStateShow,client,setClient }}>
       {children}
     </GlobalCardRequest.Provider>
   );
