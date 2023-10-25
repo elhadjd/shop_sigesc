@@ -14,6 +14,8 @@ const inter = Inter({ subsets: ['latin'] })
 import {usePathname } from 'next/navigation'
 import HeaderCheckout from './components/Home/Cart/checkout/header';
 import { CheckoutProvider } from './contexts/checkout';
+import { ClerkProvider } from "@clerk/nextjs";
+import { ptBR } from "@clerk/localizations";
 
 export const metadata: Metadata = {
   title: 'SIGESC SHOP',
@@ -28,6 +30,7 @@ export default function RootLayout({
 }) {
 
   return (
+    <ClerkProvider localization={ptBR}>
     <html lang="pt-br">
       <link rel="shortcut icon" href="logos/favicon.ico" type="image/x-icon" />
       <body className={inter.className}>
@@ -45,9 +48,9 @@ export default function RootLayout({
               </CheckoutProvider>
             </RequestCardProvider>
           </StateProgressProvider>
-          
         </div>
       </body>
     </html>
+    </ClerkProvider>
   )
 }
