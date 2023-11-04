@@ -8,10 +8,10 @@ export interface StepsType{
 export interface Checkout{
     step: number,
     client: ClientTypeScript,
-    delivery: Delivery,
 }
 
 export interface Delivery{
+    id: number,
     city: string,
     county: string,
     neighborhood: string,

@@ -42,7 +42,7 @@ export default function InfoClient() {
           </span>
           <div className='flex h-full flex-col border p-4 border-red-700 rounded '>
             <label htmlFor="comment" className='h-full w-full'>
-              <textarea name="comment" onChange={(e)=>handlerChangeInputsDelivery(e)} defaultValue={checkout.delivery.comment} className='w-full h-40 max-h-full rounded-md p-2 outline-0 text-base focus:border-dotted focus:border-red-700 text-light font-min border ' id="comment"></textarea>
+              <textarea name="comment" onChange={(e)=>handlerChangeInputsDelivery(e)} defaultValue={checkout.client.delivery.comment} className='w-full h-40 max-h-full rounded-md p-2 outline-0 text-base focus:border-dotted focus:border-red-700 text-light font-min border ' id="comment"></textarea>
             </label>
           </div>
         </div>
@@ -53,8 +53,8 @@ export default function InfoClient() {
           </span>
           <div className='flex h-80 pb-20 flex-col border p-4 rounded overflow-auto'>
             {
-              checkout.client.invoices.invoice_items.map((item,index)=>(
-                <div className=' flex flex-row w-full h-32 border-b'>
+              checkout.client.invoices[0].invoice_items.map((item,index)=>(
+                <div key={index} className=' flex flex-row w-full h-32 border-b'>
                   <span className='flex items-center w-18 h-28'>
                     <img src={`https://geral.sisgesc.net/produtos/image/${item.produto.image}`} className="w-auto h-24" alt="" />
                   </span>
@@ -68,7 +68,7 @@ export default function InfoClient() {
           </div>
           <div className="flex absolute bottom-5 p-4 bg-white w-[92%] text-light items-center justify-between text-lg font-base ml-2 h-16">
             <p>Total:</p>
-            <span>{formatToKwanza(checkout.client.invoices.TotalInvoice)}</span>
+            <span>{formatToKwanza(checkout.client.invoices[0].TotalInvoice)}</span>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ import { useRequestCardContext } from "@/app/contexts/cardContrext"
 import { setCookie } from "cookies-next"
 import { Requests } from "@/app/Api"
 import { useStateProgressContext } from "@/app/contexts/progress"
-
+import {toast} from 'react-toastify'
 export const CheckoutServices = (()=>{
   const {checkout,setCheckout} = useCheckoutContext()
   const {client} = useRequestCardContext()
@@ -15,6 +15,7 @@ export const CheckoutServices = (()=>{
   const changeStep = ((step: number,event?: React.FormEvent<HTMLFormElement>)=>{
     if (event) event.preventDefault()
     checkout.client.invoices = client.invoices
+    checkout.client.id = client.id
     checkout.step = step
     setCheckout({...checkout})
     setCookie('checkout',checkout,{maxAge: 60*60*480})
@@ -28,7 +29,7 @@ export const CheckoutServices = (()=>{
   const handlerChangeInputsDelivery = ((event: {
     target: { id: string; value: string };
   })=>{
-    checkout.delivery[event.target.id] = event.target.value
+    checkout.client.delivery[event.target.id] = event.target.value
   })
 
   const [steps,setSteps] = useState<StepsType[]>([
@@ -55,7 +56,10 @@ export const CheckoutServices = (()=>{
     setState('submitCheckout')
     await routePost('/checkoutSubmit',checkout)
     .then((response) => {
-      console.log(response);
+      if (response.data.message) return toast[response.data.type](response.data.message,{position: 'TOP-RIGHT'})
+      checkout.client = response.data
+      checkout.step = 3
+      setCheckout({...checkout})
     }).catch((err) => {
       console.log(err);
     }).finally(()=>{

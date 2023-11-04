@@ -15,8 +15,7 @@ export const Auth = (()=>{
     const [registerFormData,setRegisterFormData] = useState<Register>({
         name: '',
         email: '',
-        password: '',
-        password1: '',
+        token: '',
     })
     const [loginFormData,setLoginFormData] = useState<Login>({
         email: '',
@@ -33,10 +32,6 @@ export const Auth = (()=>{
     })
 
     const RegisterService = ((event: React.FormEvent<HTMLFormElement>)=>{
-        event.preventDefault()
-        setObject({...registerFormData})
-        if (!isFormValidRegister()) return toast.warn('Todos os campos são obligatórios',{position: 'top-right'})
-        if (registerFormData.password != registerFormData.password1)  return toast.warn('As duas senhas não poden ser diferentes',{position: 'top-right'})
         setState('registerUser')
         routePost('/registerUser',registerFormData)
         .then((response) => {

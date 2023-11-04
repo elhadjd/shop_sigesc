@@ -21,23 +21,23 @@ export default function Delivery() {
           <div className='flex h-auto flex-col border p-2 border-red-700 rounded '>
             <span className='flex flex-row p-2'>
               <label htmlFor="city" className='flex items-end w-1/4 p-2 text-lg font-light'>Cidade:</label>
-              <input type="text" placeholder='Cidade' defaultValue={checkout.delivery.city} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='city' className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Cidade' defaultValue={checkout.client.delivery.city} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='city' className='w-3/4 p-2 border outline-red-700 rounded'/>
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="County" className='flex items-end w-1/4 p-2 text-lg font-light'>Municipio:</label>
-              <input type="text" placeholder='Municipio' defaultValue={checkout.delivery.county} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='county' className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Municipio' defaultValue={checkout.client.delivery.county} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='county' className='w-3/4 p-2 border outline-red-700 rounded'/>
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="neighborhood" className='flex items-end w-1/4 p-2 text-lg font-light'>Bairo:</label>
-              <input type="text" placeholder='Bairo' defaultValue={checkout.delivery.neighborhood} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='neighborhood' className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Bairo' defaultValue={checkout.client.delivery.neighborhood} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='neighborhood' className='w-3/4 p-2 border outline-red-700 rounded'/>
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="road" className='flex items-end w-1/4 p-2 text-lg font-light'>Rua:</label>
-              <input type="text" placeholder='Sua ria' defaultValue={checkout.delivery.road} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='road' className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Sua ria' defaultValue={checkout.client.delivery.road} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='road' className='w-3/4 p-2 border outline-red-700 rounded'/>
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="housNumber" className='flex items-end w-1/4 p-2 text-lg font-light'>Numero de casa:</label>
-              <input type="text" placeholder='Numero de casa ' defaultValue={checkout.delivery.housNumber} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='housNumber' className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Numero de casa ' defaultValue={checkout.client.delivery.housNumber} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='housNumber' className='w-3/4 p-2 border outline-red-700 rounded'/>
             </span>
           </div>
         </div>

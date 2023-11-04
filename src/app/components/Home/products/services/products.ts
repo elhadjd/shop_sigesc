@@ -1,10 +1,8 @@
 import { Requests } from "@/app/Api"
-
-import { Product } from "@/app/types";
-import { useState } from "react";
-
+import { useProductsContext } from "@/app/contexts/productsContext";
 export const ProductsService = () => {
-    const [products,setProducts] = useState<Product[]>([])
+    const {setProducts} = useProductsContext()
+
     const breakpointsSlider = {
         1700: {
         slidesPerView: 6,
@@ -32,10 +30,10 @@ export const ProductsService = () => {
     const getProducts = async(limit:number)=>{
         await routeGet(`/products/${limit}`)
         .then((response) => {
-            setProducts((prevProducts)=>[...prevProducts,...response.data.response])
+            setProducts((prevProducts: any)=>[...prevProducts,...response.data.response])
         }).catch((err) => {
             console.log(err);
         });
     }
-    return { products ,getProducts,breakpointsSlider};
+    return { getProducts,breakpointsSlider};
 };

@@ -1,14 +1,14 @@
 "use client"
 import React from "react";
-import { useHeader } from "../Header/services/categoryService";
 import Link from "next/link";
 import { ImFacebook } from "react-icons/im";
 import { FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
 import { footerLinks } from "@/app/links";
+import { useProductsContext } from "@/app/contexts/productsContext";
 
 export default function FooterBottom() {
-  const { categories } = useHeader();
+  const {categories} = useProductsContext()
 
   const sociasMedias = [
     {

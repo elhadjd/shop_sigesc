@@ -42,23 +42,33 @@ export const RequestCardProvider: React.FC<RequestCardProviderProps> = ({ childr
     TotalMerchandise:0,
     user_id:0
   });
-  const clientStore:ClientTypeScript = JSON.parse(getCookie('client')|| JSON.stringify({
+  const clientObject = {
     city: '',
     company_id: 0,
     country: '',
     email: '',
     id: 0,
     image: '',
-    invoices: ListOrder,
+    invoices: [ListOrder],
     name: '',
-    password: '',
+    token: '',
     phone: '',
     rua: '',
     state: '',
     surname: '',
-    whatssap: ''
-  }))
-  const [client,setClient] = useState<ClientTypeScript>({...clientStore})
+    whatssap: '',
+    user_id_clerk: '',
+    delivery: {
+      id: 0,
+      city: '',
+      county: '',
+      housNumber: '',
+      neighborhood: '',
+      road: '',
+      comment: ''
+    },
+  }
+  const [client,setClient] = useState<ClientTypeScript>({...clientObject})
   const [stateShow, setStateShow] = useState<boolean>(false)
   return (
     <GlobalCardRequest.Provider value={{ ListOrder, setListOrder,stateShow,setStateShow,client,setClient }}>

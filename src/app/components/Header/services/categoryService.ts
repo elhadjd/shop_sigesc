@@ -1,23 +1,24 @@
 "use client"
 import { useState } from "react"
+import { Requests } from "@/app/Api"
+import { useProductsContext } from "@/app/contexts/productsContext"
 
-interface Categories{
-    name: string,
-}
 export const useHeader = (()=>{
-    const categories: Categories[] = ([
-        {name: 'Novidades'},
-        {name: 'Beleja'},
-        {name: 'Roupas'},
-        {name: 'Calsados'},
-        {name: 'Alimentos'},
-        {name: 'Eletronicos'},
-        {name: 'Infantil'},
-        {name: 'Promoção'},
-    ])
+    const {routeGet} = Requests()
     const [stateMenu,setStateMenu] = useState<boolean>(false)
+    const {setCategories} = useProductsContext()
     const openMenu = (()=>{
         setStateMenu(!stateMenu)
     })
-    return {stateMenu,categories,openMenu}
+
+    const getCategories = (async()=>{
+        await routeGet('categories')
+        .then((response) => {
+            setCategories(response.data)
+        }).catch((err) => {
+            console.log(err);
+        });
+    })
+
+    return {stateMenu,openMenu,getCategories}
 })

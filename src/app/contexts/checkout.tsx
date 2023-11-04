@@ -23,14 +23,6 @@ export const CheckoutProvider:React.FC<checkoutProviderProps> = (({children})=>{
     const {client} = useRequestCardContext()
     const [checkout,setCheckout] = useState<Checkout>({
         step: 0,
-        delivery: {
-          city: '',
-          county: '',
-          housNumber: '',
-          neighborhood: '',
-          road: '',
-          comment: ''
-        },
         client: client
       })
     return (

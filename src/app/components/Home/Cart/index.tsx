@@ -8,7 +8,7 @@ import { useStateProgressContext } from '@/app/contexts/progress'
 import Link from 'next/link'
 
 export default function Cart() {
-    const {client,setStateShow} = useRequestCardContext()
+    const {setStateShow,ListOrder} = useRequestCardContext()
     const {removeItem} = CartServices()
     const {progress,state} = useStateProgressContext()
     return (
@@ -23,7 +23,7 @@ export default function Cart() {
                 </div>
                 <div className='flex flex-col overflow-auto scroll-m-0 snap-y p-4 h-[75%] space-y-3'>
                     {
-                        client.invoices.invoice_items.map((item,index)=>(
+                        ListOrder.invoice_items.map((item,index)=>(
                         <div key={index} className='flex h-26 scroll-ms-6 snap-end items-center space-x-2 p-1 drop-shadow-lg rounded bg-white'>
                             <img src={`https://geral.sisgesc.net/produtos/image/${item.produto.image}`} alt="" className=' w-[55px] rounded'/>
                             <div className='flex flex-col w-64 between'>
@@ -49,7 +49,7 @@ export default function Cart() {
                         <strong className='flex'>
                             Total:
                         </strong>
-                        <h3 className='text-lg font-bold'>{formatToKwanza(client.invoices.TotalInvoice)}</h3>
+                        <h3 className='text-lg font-bold'>{formatToKwanza(ListOrder.TotalInvoice)}</h3>
                     </div>
                     <Link href={'/checkout'} className='flex w-1/2 justify-center items-center bg-red-700 p-3 rounded text-white font-bold'>Finalizar compra</Link>
                 </div>

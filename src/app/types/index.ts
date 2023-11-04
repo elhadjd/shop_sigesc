@@ -1,3 +1,5 @@
+import { Product } from "./products";
+
 export interface ItemInvoice {
     id: number
     invoice_id: number;
@@ -31,19 +33,4 @@ export interface ItemInvoice {
   DateDue: string;
   RestPayable: number;
   invoice_items: ItemInvoice[]
-}
-
-export interface Product{
-    id:number,
-    nome: string,
-    company_id: number,
-    image: string,
-    category_product_id: number,
-    product_type_id: number,
-    fabricante: string,
-    preçocust: number,
-    imposto: string,
-    preçovenda: number,
-    preco_medio: number,
-    estado: number
 }

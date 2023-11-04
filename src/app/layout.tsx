@@ -11,11 +11,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { StateProgressProvider } from './contexts/progress';
 import Footer from './components/footer';
 const inter = Inter({ subsets: ['latin'] })
-import {usePathname } from 'next/navigation'
-import HeaderCheckout from './components/Home/Cart/checkout/header';
+import {neobrutalism} from "@clerk/themes";
 import { CheckoutProvider } from './contexts/checkout';
 import { ClerkProvider } from "@clerk/nextjs";
 import { ptBR } from "@clerk/localizations";
+import { ProductsProvider } from './contexts/productsContext';
+import { RedirectAfterLoginProvider } from './contexts/redirectAfterLoginContext';
 
 export const metadata: Metadata = {
   title: 'SIGESC SHOP',
@@ -30,23 +31,27 @@ export default function RootLayout({
 }) {
 
   return (
-    <ClerkProvider localization={ptBR}>
+    <ClerkProvider localization={ptBR} appearance={{baseTheme:neobrutalism}}>
     <html lang="pt-br">
-      <link rel="shortcut icon" href="logos/favicon.ico" type="image/x-icon" />
+      <link rel="shortcut icon" href="/logos/favicon.ico" type="image/x-icon" />
       <body className={inter.className}>
         <div className='w-full h-scree flex flex-col relative'>
         <div id="google_translate_element"></div>
           <ToastContainer/>
           <StateProgressProvider>
-            <RequestCardProvider>
-              <CheckoutProvider>
-                <Header/>
-                <div className='absolute top-32 w-full flex-auto overflow-y-auto'>
-                  {children}
-                  <Footer/>
-                </div>
-              </CheckoutProvider>
-            </RequestCardProvider>
+            <RedirectAfterLoginProvider>
+              <ProductsProvider>
+                <RequestCardProvider>
+                  <CheckoutProvider>
+                    <Header/>
+                    <div className='absolute top-32 w-full flex-auto overflow-y-auto'>
+                        {children}
+                      <Footer/>
+                    </div>
+                  </CheckoutProvider>
+                </RequestCardProvider>
+              </ProductsProvider>
+            </RedirectAfterLoginProvider>
           </StateProgressProvider>
         </div>
       </body>

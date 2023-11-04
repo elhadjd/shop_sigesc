@@ -10,14 +10,31 @@ import { useRequestCardContext } from "@/app/contexts/cardContrext";
 import { NavBarService } from "./services/navBar";
 import {RiArrowDownSLine} from 'react-icons/ri'
 import { CartServices } from "../Home/Cart/services";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 export default function Bar() {
-  const {setStateShow,client} = useRequestCardContext()
-  const {getInvoice} = CartServices()
+  const {setStateShow,ListOrder,client,setClient} = useRequestCardContext()
+  const {getInvoice,getClientActive} = CartServices()
   const {openMenu,stateMenu,closeMenu} = NavBarService()
+  const { isSignedIn, user, isLoaded } = useUser();
+  if (!isLoaded) {
+    return null;
+  }
   useEffect(()=>{
     (async()=>{
+      if (isSignedIn) {
+        const token = localStorage.getItem('clerk-db-jwt') || null
+        client.name = user.fullName
+        client.email = user.emailAddresses[0].emailAddress
+        client.surname = user.firstName
+        client.token = token
+        client.user_id_clerk = user.id
+        client.image = user.imageUrl
+        setClient({...client})
+        await getClientActive(client)
+      }else{
         await getInvoice()
+      }
     })()
 },[])
   return (
@@ -54,15 +71,16 @@ export default function Bar() {
               <span className="ml-2">{linksObj.payments.label}</span>
             </Link>
         </div>
+        <UserButton afterSignOutUrl="/"/>
       </div>
       <div className={`flex w-32 p-3 h-full md:flex-column space-x-6 justify-center items-center max-[600px]:w-12 max-[1080px]:ml-3 max-[1080px]:justify-self-end`}>
         <span onClick={()=>setStateShow(true)} className="relative flex items-center hover:cursor-pointer">
           <BiShoppingBag className="absolute right-3 text-2xl" />
           <span className="bg-red-700 z-10 text-white h-5 w-5 flex items-center justify-center rounded-full">
-            {client.invoices.invoice_items.length | 0}
+            {ListOrder.invoice_items.length | 0}
           </span>
         </span>
-        <button className="min-[1080px]:hidden text-xxl font-xl" onClick={openMenu}>
+        <button type="button" className="min-[1080px]:hidden text-xxl font-xl" onClick={openMenu}>
             <RiArrowDownSLine className="text-red-700 text-xxl"/>
         </button>
       </div>

@@ -1,23 +1,20 @@
 "use client"
-import React, { useEffect } from 'react'
+import React from 'react'
 import PurchaseButton from '../public/purchaseButton'
-import { ProductsService } from './services/products'
 import { formatToKwanza } from '@/lib/currency'
+import Link from 'next/link'
+import { Product } from '@/app/types/products'
 
-export default function ListProducts() {
-    const {getProducts,products} = ProductsService()
-    useEffect(()=>{
-            getProducts(100)
-    },[])
+export default function ListProducts({products}:{products:Product[]}) {
     return (
-        <div>
+        <>
             {products.map((product, index) => (
-                <div
-                key={index}
-                className="flex-col w-80 hover:cursor-pointer m-2 hover:border-blue-950 space-y-2 border rounded p-3"
+                <Link href={`/products/${product.id}`}
+                key={product.id}
+                className="flex flex-col w-64 max-[500px]:w-32 max-[600px]:w-40 hover:cursor-pointer m-2 hover:border-blue-950 space-y-2 border rounded p-3"
                 >
-                    <span className="flex h-80 w-full justify-center items-center">
-                        <img className="h-80 w-full px-7" src={`https://geral.sisgesc.net/produtos/image/${product.image}`} alt={product.nome} />
+                    <span className="flex h-48 max-[600px]:h-24 max-[500px]:h-16 w-full justify-center items-center">
+                        <img className="h-48 w-auto max-[600px]:h-24 max-[500px]:h-16 px-7" src={`https://geral.sisgesc.net/produtos/image/${product.image}`} alt={product.nome} />
                     </span>
                     <div className="flex flex-col space-y-1">
                         <span className="font-base font-normal truncate justify-center">
@@ -33,8 +30,8 @@ export default function ListProducts() {
                     <div>
                         <PurchaseButton {...product}/>
                     </div>
-                </div>
+                </Link>
             ))}
-        </div>
+        </>
     )
 }

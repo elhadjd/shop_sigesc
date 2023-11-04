@@ -9,7 +9,7 @@ import { useStateProgressContext } from '@/app/contexts/progress'
 import { CheckoutServices } from './services'
 
 export default function ReviewCart() {
-  const {client} = useRequestCardContext()
+  const {ListOrder} = useRequestCardContext()
   const {addItem} = CartServices()
   const {steps,changeStep} = CheckoutServices()
   const {progress,state} = useStateProgressContext()
@@ -26,7 +26,7 @@ export default function ReviewCart() {
         </thead>
         <tbody>
           {
-            client.invoices.invoice_items.map((item,index)=>(
+            ListOrder.invoice_items.map((item,index)=>(
               <tr key={index}>
                 <td className='p-4 flex items-center space-x-4'>
                   <span className=' w-[55px] rounded'>
@@ -54,11 +54,11 @@ export default function ReviewCart() {
       <div className='w-full flex items-end flex-col text-base font-bold'>
         <div className='flex w-64 h-20 justify-between items-center border-b'>
           <strong>Subtotal: </strong>
-          <span>{formatToKwanza(client.invoices.TotalMerchandise)}</span>
+          <span>{formatToKwanza(ListOrder.TotalMerchandise)}</span>
         </div>
         <div className='flex w-64 h-20 items-center justify-between'>
           <strong>Total: </strong>
-          <span>{formatToKwanza(client.invoices.TotalInvoice)}</span>
+          <span>{formatToKwanza(ListOrder.TotalInvoice)}</span>
         </div>
       </div>
       <div className='flex p-4 h-20 justify-between items-center'>

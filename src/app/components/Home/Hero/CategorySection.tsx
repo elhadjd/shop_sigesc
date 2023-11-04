@@ -1,9 +1,12 @@
 "use client"
 import Image from "next/image";
-import { sliderCategory } from "./service/data";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Keyboard, Scrollbar, Navigation, Pagination } from "swiper/modules";
+import { Keyboard, Navigation } from "swiper/modules";
+import { useProductsContext } from "@/app/contexts/productsContext";
+import Link from "next/link";
+import { linksObj } from "@/app/links";
 export default function CategorySection() {
+  const {categories} = useProductsContext()
   const breakpointsSlider = {
     1700: {
       slidesPerView: 7,
@@ -27,7 +30,7 @@ export default function CategorySection() {
     },
     }
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto mb-2">
       <div className="text-center mb-2">
         <h2 className="text-1/2xl md:text-2xl lg:text-3xl">
           NAVEGUE POR CATEGORIA
@@ -51,21 +54,14 @@ export default function CategorySection() {
       className="mySwiper"
       >
         <div className="flex space-4 w-full justify-center">
-          {sliderCategory.map((item, idx) => (
+          {categories.map((item, idx) => (
             <SwiperSlide key={idx} className="flex p-2 w-full">
-              <div className="flex flex-col items-center justify-center">
-                <div className="flex w-32 h-32 rounded-full bg-zinc-500 items-center justify-center">
-                  <Image
-                    src={item.url || '/sapato02.png'}
-                    alt="category"
-                    className="h-[50px] flex h-[50px] rounded-full"
-                    width={70}
-                    height={1080}
-                  />
+              <Link href={`${linksObj.products.href}/categories/${item.id}`} className="flex flex-col items-center justify-center">
+                <div className="flex w-32 p-4 h-32 rounded-full bg-zinc-500 items-center justify-center">
+                  <img src={`/categories/image/${item.image}`} alt="" className="h-full w-full rounded-full" />
                 </div>
-                <span className="mt-2 text-center">{item.title}</span> 
-              </div>
-              
+                <span className="mt-2 text-center">{item.name}</span> 
+              </Link>
             </SwiperSlide>
           ))}
         </div>
