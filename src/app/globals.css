@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --text-color:#f2f6fa;
+    --bg-button: #00a5cf;
+    --text-color2: #333333;
+    --bg-button-hover:#00a6cf17;
+    --app_hover:#3f4f6c92;
+    --app_color: #4c6696;
+    --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    --color-delete: rgba(202,0,0,0.803);
+  }
+}
+
+/* Custom ui elements */
+@layer components {
+  .button {
+    @apply px-4 py-2 font-medium tracking-wide rounded-md shadow;
+  }
+  .button-success {
+     @apply w-full flex justify-center items-center space-x-2 bg-green-600 p-2 text-white rounded-md;
+  }
+  .button-danger {
+     @apply p-1 text-lg text-white bg-red-700 rounded-lg w-32;
+  }
+}
+
 .progress {
   display: inline-block;
   animation: spin 2s infinite linear;
@@ -15,7 +41,3 @@
     transform: rotate(360deg);
   }
 }
-
-
-
-

@@ -7,5 +7,4 @@ const globalHeaders = createContext<{
 
 export const useHeadersContext = (()=>{
     const context = useContext(globalHeaders)
-    
 })

@@ -1,5 +1,6 @@
 import React from 'react'
 import { OurService } from './service/ourServices'
+import { Button } from '@/app/ui/button'
 
 export default function OurServices() {
     const {companyServices} = OurService()
@@ -14,7 +15,7 @@ export default function OurServices() {
                     <div className='flex flex-col space-y-2'>
                         <span className='font-base uppercase'>{service.name}</span>
                         <span className='text-ellipsis overflow-hidden text-sm font-base h-10'>{service.description}</span>
-                        <button className='p-1 text-lg font-ms text-white bg-red-700 rounded-lg w-32'>Ver Mais</button>
+                        <Button type="button" className='button-danger'>Ver mais</Button>
                     </div>
                 </div>
             ))
