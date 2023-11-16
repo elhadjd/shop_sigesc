@@ -16,7 +16,7 @@ export default function Category({categoryId}:{categoryId:number}) {
 
   return (
     <div>
-      <div className='h-32 w-full bg-red-700 p-2 flex items-center'>
+      <div className='h-32 w-full bg-[#00a5cf] p-2 flex items-center'>
         <span className='text-3xl text-white'>{category.name}</span>
       </div>
       <div className='flex'>

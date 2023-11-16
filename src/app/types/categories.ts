@@ -5,7 +5,7 @@ export interface Categories{
     name: string,
     image: string,
     sub_categories: SubCategory[],
-    produtos: Product[]
+    produtos?: Product[]
 }
 export interface SubCategory{
     name: string

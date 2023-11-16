@@ -6,7 +6,7 @@ export default function Footer() {
     <div className="w-full flex flex-col">
       <div className="flex flex-wrap divide-y w-full divide-dashed space-x-4 max-[1000px]:space-x-0 space-y-2 px-10 py-3 mt-10 bg-gray-100 max-[1000px]:flex-col">
         <div className="flex-auto max-[1000px]:w-full flex-col w-64 space-lt-2 flex-col">
-          <span className="flex text-lg font-bold text-red-700">
+          <span className="flex text-lg font-bold text-[#00a5cf]">
             GANHE 10% DE DESCONTO
           </span>
           <span className="flex text-base font-bold">
@@ -50,7 +50,7 @@ export default function Footer() {
             <span className="flex items-center justify-center">
               <button
                 type="submit"
-                className="rounded-lg shadow bg-red-700 max-[600px]:w-full p-2 text-base font-base text-white px-4"
+                className="rounded-lg shadow bg-[#00a5cf] max-[600px]:w-full p-2 text-base font-base text-white px-4"
               >
                 Cadastrar
               </button>

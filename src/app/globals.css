@@ -24,7 +24,7 @@
      @apply w-full flex justify-center items-center space-x-2 bg-green-600 p-2 text-white rounded-md;
   }
   .button-danger {
-     @apply p-1 text-lg text-white bg-red-700 rounded-lg w-32;
+     @apply p-1 text-lg text-white bg-[#00a5cf] rounded-lg w-32;
   }
 }
 

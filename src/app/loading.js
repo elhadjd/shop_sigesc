@@ -1,6 +1,6 @@
-"use client"
-import {useStateProgressContext} from './contexts/progress'
+import Loading from '../app/components/Home/public/loading'
 export default function loading() {
-  const {progress} = useStateProgressContext()
-  return  progress
+  return  (
+    <Loading/>
+  )
 }

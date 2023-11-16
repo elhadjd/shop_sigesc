@@ -8,7 +8,7 @@ export default function Register() {
     const {progress,state} = useStateProgressContext()
   return (
     <div className='w-full mt-10 h-auto flex justify-center items-center'>
-        <form onSubmit={RegisterService} className='w-96 max-md border border-red-700 rounded h-full p-4'>
+        <form onSubmit={RegisterService} className='w-96 max-md border border-[#00a5cf] rounded h-full p-4'>
             <span className='flex flex-col p-2'>
               <label htmlFor="name" className='flex items-end w-full p-2 text-lg font-light'>Nome:</label>
               <input type="text" placeholder='Nome' onChange={(e)=>handlerChangeInputsRegister(e)} required id='name' className='w-full p-2 border outline-red-700 rounded'/>
@@ -26,12 +26,12 @@ export default function Register() {
               <input type="password" placeholder='Confirmar senha' onChange={(e)=>handlerChangeInputsRegister(e)} required id='password1' className='w-full p-2 border outline-red-700 rounded'/>
             </span>
             <span className='flex flex p-2 justify-center items-center bg-white'>
-                <button type='submit' className='outline-0 border rounded p-2 font-bold hover:bg-red-700 hover:text-white text-red-700 border-red-700 w-full'>
+                <button type='submit' className='outline-0 border rounded p-2 font-bold hover:bg-[#00a5cf] hover:text-white text-[#00a5cf] border-[#00a5cf] w-full'>
                     Confirmar
                     {state == 'registerUser' && progress}
                 </button>
             </span>
-            <span className='flex justify-end text-red-700 text-base p-2'>
+            <span className='flex justify-end text-[#00a5cf] text-base p-2'>
                 <Link href={'/auth/login'}>ja tenho conta</Link>
             </span>
         </form>

@@ -15,10 +15,10 @@ export default function Delivery() {
         </div>
         <div className='flex-auto flex-col space-y-2 h-96 w-96 max-w-md'>
           <span className='flex justify-center items-center space-x-2'>
-            <BsFillPersonVcardFill className="text-2xl text-red-700"/>
+            <BsFillPersonVcardFill className="text-2xl text-[#00a5cf]"/>
             <h3 className='p-2 text-center text-base font-leght'>Dados Pesual</h3>
           </span>
-          <div className='flex h-auto flex-col border p-2 border-red-700 rounded '>
+          <div className='flex h-auto flex-col border p-2 border-[#00a5cf] rounded '>
             <span className='flex flex-row p-2'>
               <label htmlFor="city" className='flex items-end w-1/4 p-2 text-lg font-light'>Cidade:</label>
               <input type="text" placeholder='Cidade' defaultValue={checkout.client.delivery.city} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='city' className='w-3/4 p-2 border outline-red-700 rounded'/>
@@ -43,8 +43,8 @@ export default function Delivery() {
         </div>
       </div>
       <div className='flex flex-row w-full p-4 justify-between'>
-        <button type='button' className='text-red-700 w-64 p-2 text-center rounded border' onClick={()=>changeStep(1)}>Voltar</button>
-        <button type='submit' className='w-64 bg-red-700 rounded border p-2 text-white space-x-2'>
+        <button type='button' className='text-[#00a5cf] w-64 p-2 text-center rounded border' onClick={()=>changeStep(1)}>Voltar</button>
+        <button type='submit' className='w-64 bg-[#00a5cf] rounded border p-2 text-white space-x-2'>
           Confirmar
           {
             state == 'submitCheckout' && progress

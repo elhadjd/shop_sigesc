@@ -1,14 +1,10 @@
 "use client"
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { TypeInvoice } from '../types';
-import { ClientTypeScript } from '../types/client';
-import { getCookie } from 'cookies-next';
 
 const GlobalCardRequest = createContext<{
   stateShow: boolean,
   setStateShow: React.Dispatch<boolean>,
-  client: ClientTypeScript,
-  setClient: React.Dispatch<React.SetStateAction<ClientTypeScript>>
   ListOrder: TypeInvoice;
   setListOrder: React.Dispatch<React.SetStateAction<TypeInvoice>>;
 } | undefined>(undefined);
@@ -42,36 +38,10 @@ export const RequestCardProvider: React.FC<RequestCardProviderProps> = ({ childr
     TotalMerchandise:0,
     user_id:0
   });
-  const clientObject = {
-    city: '',
-    company_id: 0,
-    country: '',
-    email: '',
-    id: 0,
-    image: '',
-    invoices: [ListOrder],
-    name: '',
-    token: '',
-    phone: '',
-    rua: '',
-    state: '',
-    surname: '',
-    whatssap: '',
-    user_id_clerk: '',
-    delivery: {
-      id: 0,
-      city: '',
-      county: '',
-      housNumber: '',
-      neighborhood: '',
-      road: '',
-      comment: ''
-    },
-  }
-  const [client,setClient] = useState<ClientTypeScript>({...clientObject})
+  
   const [stateShow, setStateShow] = useState<boolean>(false)
   return (
-    <GlobalCardRequest.Provider value={{ ListOrder, setListOrder,stateShow,setStateShow,client,setClient }}>
+    <GlobalCardRequest.Provider value={{ ListOrder, setListOrder,stateShow,setStateShow}}>
       {children}
     </GlobalCardRequest.Provider>
   );

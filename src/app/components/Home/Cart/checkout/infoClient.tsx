@@ -13,10 +13,10 @@ export default function InfoClient() {
       <div className='flex flex-row flex-wrap justify-center p-4 h-auto  min-[820px]:space-x-4 max-[600px]:space-y-6'>
         <div className='flex flex-col space-y-2 h-96 w-96 max-w-md'>
           <span className='flex justify-center items-center space-x-2'>
-            <BsFillPersonVcardFill className="text-2xl text-red-700"/>
+            <BsFillPersonVcardFill className="text-2xl text-[#00a5cf]"/>
             <h3 className='p-2 text-center text-base font-leght'>Dados Pesual</h3>
           </span>
-          <div className='flex h-full flex-col border p-2 border-red-700 rounded '>
+          <div className='flex h-full flex-col border p-2 border-[#00a5cf] rounded '>
             <span className='flex flex-row p-2'>
               <label htmlFor="email" className='flex items-end w-1/4 p-2 text-lg font-light'>E-mail:</label>
               <input type="email" placeholder='Digite seu email' defaultValue={checkout.client.email} required id='email' onChange={(e)=>handlerChangeInputsInfo(e)} className='w-3/4 p-2 border outline-red-700 rounded'/>
@@ -37,18 +37,18 @@ export default function InfoClient() {
         </div>
         <div className='flex flex-col space-y-2 h-96 w-96 max-w-md'>
           <span className='flex justify-center items-center space-x-2'>
-            <FaRegCommentAlt className="text-2xl text-red-700"/>
+            <FaRegCommentAlt className="text-2xl text-[#00a5cf]"/>
             <h3 className='p-2 text-center text-base font-leght'>Dados Pesual</h3>
           </span>
-          <div className='flex h-full flex-col border p-4 border-red-700 rounded '>
+          <div className='flex h-full flex-col border p-4 border-[#00a5cf] rounded '>
             <label htmlFor="comment" className='h-full w-full'>
-              <textarea name="comment" onChange={(e)=>handlerChangeInputsDelivery(e)} defaultValue={checkout.client.delivery.comment} className='w-full h-40 max-h-full rounded-md p-2 outline-0 text-base focus:border-dotted focus:border-red-700 text-light font-min border ' id="comment"></textarea>
+              <textarea name="comment" onChange={(e)=>handlerChangeInputsDelivery(e)} defaultValue={checkout.client.delivery.comment} className='w-full h-40 max-h-full rounded-md p-2 outline-0 text-base focus:border-dotted focus:border-[#00a5cf] text-light font-min border ' id="comment"></textarea>
             </label>
           </div>
         </div>
         <div className='flex flex-col space-y-2 relative h-96 w-96 max-w-md'>
           <span className='flex justify-center items-center space-x-2'>
-            <LiaFileInvoiceDollarSolid className="text-2xl text-red-700"/>
+            <LiaFileInvoiceDollarSolid className="text-2xl text-[#00a5cf]"/>
             <h3 className='p-2 text-center text-base font-leght'>Dados Pesual</h3>
           </span>
           <div className='flex h-80 pb-20 flex-col border p-4 rounded overflow-auto'>
@@ -73,8 +73,8 @@ export default function InfoClient() {
         </div>
       </div>
       <div className='flex flex-row w-full p-4 justify-between'>
-        <button className='text-red-700 w-64 text-center p-2 rounded border' type='button' onClick={()=>changeStep(0)}>Voltar</button>
-        <button type='submit' className='rounded click:outline-red-700 bg-red-700 text-white p-2 w-64'>Ir para entrega</button>
+        <button className='text-[#00a5cf] w-64 text-center p-2 rounded border' type='button' onClick={()=>changeStep(0)}>Voltar</button>
+        <button type='submit' className='rounded click:outline-red-700 bg-[#00a5cf] text-white p-2 w-64'>Ir para entrega</button>
       </div>
     </form>
     

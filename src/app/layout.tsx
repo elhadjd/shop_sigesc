@@ -17,6 +17,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ptBR } from "@clerk/localizations";
 import { ProductsProvider } from './contexts/productsContext';
 import { RedirectAfterLoginProvider } from './contexts/redirectAfterLoginContext';
+import { ClientProvider } from './contexts/clientContext';
 
 export const metadata: Metadata = {
   title: 'SIGESC SHOP',
@@ -42,13 +43,15 @@ export default function RootLayout({
             <RedirectAfterLoginProvider>
               <ProductsProvider>
                 <RequestCardProvider>
-                  <CheckoutProvider>
-                    <Header/>
-                    <div className='absolute top-32 w-full flex-auto overflow-y-auto'>
-                        {children}
-                      <Footer/>
-                    </div>
-                  </CheckoutProvider>
+                  <ClientProvider>
+                    <CheckoutProvider>
+                      <Header/>
+                      <div className='absolute top-32 w-full flex-auto overflow-y-auto'>
+                          {children}
+                        <Footer/>
+                      </div>
+                    </CheckoutProvider>
+                  </ClientProvider>
                 </RequestCardProvider>
               </ProductsProvider>
             </RedirectAfterLoginProvider>

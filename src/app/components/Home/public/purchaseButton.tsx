@@ -1,6 +1,6 @@
 import { CartServices } from "../Cart/services";
 import { useStateProgressContext } from "@/app/contexts/progress";
-import { Product } from "@/app/types";
+import { Product } from "@/app/types/products";
 import React from "react";
 import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 

@@ -2,8 +2,10 @@ import { Requests } from "@/app/Api"
 import { useProductsContext } from "@/app/contexts/productsContext"
 import { Product } from "@/app/types/products"
 import {  useState } from "react"
+import { categoryService } from "../../Hero/categories/service/categoryService"
 
 export const _productService = (()=>{
+    const {category} = categoryService()
     const [product,setProduct] = useState<Product>({
         category_product_id: 0,
         company_id: 0,
@@ -25,7 +27,7 @@ export const _productService = (()=>{
             nome: '',
             Sub_Categories: [],
             produtos: []
-        }
+        },
     })
     const {routeGet} = Requests()
     const [image,setImage] = useState<string>('')

@@ -1,15 +1,16 @@
 import { Requests } from "@/app/Api"
 import { useRequestCardContext } from "@/app/contexts/cardContrext"
-import { Product, TypeInvoice } from "@/app/types"
 import { getCookie, setCookie } from 'cookies-next';
 import { toast } from 'react-toastify'
-
 import { useStateProgressContext } from '@/app/contexts/progress'
 import { ClientTypeScript } from '@/app/types/client'
+import { useClientContext } from "@/app/contexts/clientContext";
+import { Product } from "@/app/types/products";
 
 export const CartServices = (()=>{
     const {routePost,routeGet,routeDelete} = Requests()
-    const {setClient,setListOrder,client} = useRequestCardContext()
+    const {setClient,client} = useClientContext()
+    const {setListOrder} = useRequestCardContext()
     const {setState,setColorIcon} = useStateProgressContext()
     
     const addItem = (async(product: Product,quantity: number,checkout?:string)=>{
@@ -21,9 +22,6 @@ export const CartServices = (()=>{
         }else{
             route = `addProdAtOrder/${quantity}/${checkoutString}`
         }
-        console.log(client);
-        
-        setColorIcon('white')
         setState(`addItem${product.id}`)
         await routePost(route,product)
         .then((response) => {
@@ -44,9 +42,7 @@ export const CartServices = (()=>{
         .then((response) => {
             if(response.data.message) return toast[response.data.type](response.data.message,{position: 'top-right'})
             setClient({...response.data})
-            setListOrder({...client.invoices[0]})
-            console.log(client);
-            
+            setListOrder(client.invoices[0])            
         }).catch((err) => {
             console.log(err);
         }).finally(()=>{

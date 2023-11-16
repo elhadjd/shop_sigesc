@@ -1,11 +1,12 @@
 import React from 'react'
-import { useHeader } from '../Header/services/categoryService'
 import Link from 'next/link'
 import { ImFacebook } from 'react-icons/im'
 import {FaLinkedinIn, FaYoutube} from 'react-icons/fa'
 import { FiInstagram } from 'react-icons/fi'
+import { useProductsContext } from '@/app/contexts/productsContext'
+import { linksObj } from '@/app/links'
 export default function FooterBottom() {
-    const {categories} = useHeader()
+    const {categories} = useProductsContext()
   return (
     <div className='w-full h-full flex flex-col'>
         <div className='flex h-full max-[800px]:flex-col'>
@@ -14,7 +15,7 @@ export default function FooterBottom() {
                 <div className='flex space-y-1 flex-col'>
                     {
                         categories.map((category,index)=>(
-                            <Link href={'#'} key={index} className='text-sm py-1 font-base'>{category.name}</Link>
+                            <Link href={`${linksObj.products.href}/categories/${category.id}`} key={index} className='text-sm py-1 font-base'>{category.name}</Link>
                         ))
                     }
                 </div>

@@ -7,8 +7,10 @@ import Link from 'next/link'
 import { linksObj } from '@/app/links'
 import { useStateProgressContext } from '@/app/contexts/progress'
 import { CheckoutServices } from './services'
+import { useClientContext } from '@/app/contexts/clientContext'
 
 export default function ReviewCart() {
+  const {client} = useClientContext()
   const {ListOrder} = useRequestCardContext()
   const {addItem} = CartServices()
   const {steps,changeStep} = CheckoutServices()
@@ -26,7 +28,7 @@ export default function ReviewCart() {
         </thead>
         <tbody>
           {
-            ListOrder.invoice_items.map((item,index)=>(
+            client.invoices[0].invoice_items.map((item,index)=>(
               <tr key={index}>
                 <td className='p-4 flex items-center space-x-4'>
                   <span className=' w-[55px] rounded'>
@@ -37,9 +39,9 @@ export default function ReviewCart() {
                 <td>{formatToKwanza(item.PriceSold)} </td>
                 <td>
                   <div className='h-full space-x-2 flex w-36 items-center'>
-                    <button type='button' onClick={()=>addItem(item.produto,-1)} className='p-2 rounded text-red-700'>-</button>
+                    <button type='button' onClick={()=>addItem(item.produto,-1)} className='p-2 rounded text-[#00a5cf]'>-</button>
                     <input type="text" defaultValue={item.quantity} placeholder='Quantidade' onChange={(e)=>item.quantity = Number(e.target.value)} onBlur={(e)=>addItem(item.produto,Number(e.target.value),'checkout')} className='w-16 text-center border outline-0 rounded'/>
-                    <button type='button' onClick={()=>addItem(item.produto,1)} className='p-2 rounded text-red-700'>+</button>
+                    <button type='button' onClick={()=>addItem(item.produto,1)} className='p-2 rounded text-[#00a5cf]'>+</button>
                   </div>
                 </td>
                 <td>{formatToKwanza(item.TotalSold)}</td>
@@ -62,8 +64,8 @@ export default function ReviewCart() {
         </div>
       </div>
       <div className='flex p-4 h-20 justify-between items-center'>
-        <Link href={linksObj.products.href} className='border border-red-700 flex p-2 rounded text-red-700 text-base w-64 justify-center'>Continuar a comprar</Link>
-        <button type='submit' className='bg-red-700 flex p-2 rounded text-white text-base w-64 justify-center'>Finalizar compra</button>
+        <Link href={linksObj.products.href} className='border border-[#00a5cf] flex p-2 rounded text-[#00a5cf] text-base w-64 justify-center'>Continuar a comprar</Link>
+        <button type='submit' className='bg-[#00a5cf] flex p-2 rounded text-white text-base w-64 justify-center'>Finalizar compra</button>
       </div>
     </form>
   )

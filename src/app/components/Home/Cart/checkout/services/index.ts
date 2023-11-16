@@ -2,20 +2,19 @@
 import React, { useState } from "react"
 import {StepsType} from '@/app/types/checkout'
 import { useCheckoutContext } from "@/app/contexts/checkout"
-import { useRequestCardContext } from "@/app/contexts/cardContrext"
 import { setCookie } from "cookies-next"
 import { Requests } from "@/app/Api"
 import { useStateProgressContext } from "@/app/contexts/progress"
 import {toast} from 'react-toastify'
+import { useClientContext } from "@/app/contexts/clientContext"
 export const CheckoutServices = (()=>{
   const {checkout,setCheckout} = useCheckoutContext()
-  const {client} = useRequestCardContext()
+  const {client} = useClientContext()
   const {routePost} = Requests()
   const {setState,setColorIcon} = useStateProgressContext()
   const changeStep = ((step: number,event?: React.FormEvent<HTMLFormElement>)=>{
     if (event) event.preventDefault()
-    checkout.client.invoices = client.invoices
-    checkout.client.id = client.id
+    checkout.client = client
     checkout.step = step
     setCheckout({...checkout})
     setCookie('checkout',checkout,{maxAge: 60*60*480})

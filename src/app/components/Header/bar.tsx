@@ -10,12 +10,15 @@ import { useRequestCardContext } from "@/app/contexts/cardContrext";
 import { NavBarService } from "./services/navBar";
 import {RiArrowDownSLine} from 'react-icons/ri'
 import { CartServices } from "../Home/Cart/services";
-import { UserButton, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
+import {useClientContext} from '@/app/contexts/clientContext'
+import ClientUser from "../client/client";
 
 export default function Bar() {
-  const {setStateShow,ListOrder,client,setClient} = useRequestCardContext()
+  const {setStateShow,ListOrder} = useRequestCardContext()
   const {getInvoice,getClientActive} = CartServices()
-  const {openMenu,stateMenu,closeMenu} = NavBarService()
+  const {openMenu,stateMenu} = NavBarService()
+  const {client,setClient} = useClientContext()
   const { isSignedIn, user, isLoaded } = useUser();
   if (!isLoaded) {
     return null;
@@ -40,7 +43,7 @@ export default function Bar() {
   return (
     <div className="h-16 border-b border-inherit flex max-[1080px]:relative">
       <div className="flex w-32 max-[700px]:flex-auto p-2 items-center justify-center">
-        <Link href={linksObj.home.href}><h2 className="font-bold text-2xl text-red-700">SIGESC</h2></Link>
+        <Link href={linksObj.home.href}><h2 className="font-bold text-2xl text-[#00a5cf]">SIGESC</h2></Link>
       </div>
       <div className="flex-auto max-[1080px]:flex-auto max-[1080px]:w-64 p-2">
         <span className="relative flex f-2 items-center justify-center">
@@ -53,35 +56,35 @@ export default function Bar() {
         </span>
       </div>
       <div className={`flex-auto w-64 flex max-[1080px]:top-16 ${ !stateMenu ? 'max-[1080px]:hidden' : 'max-[1080px]:visible'} max-[1080px]:right-0 max-[1080px]:flex-col max-[1080px]:bg-white max-[1080px]:z-20 max-[1080px]:shadow max-[1080px]:absolute justify-center text-blue-950 text-base md:max-w-2xl`}>
-        <div className="flex-auto p-3 flex h-full items-center justify-center hover:cursor-pointer hover:text-red-700 max-[1080px]:justify-start">
+        <div className="flex-auto p-3 flex h-full items-center justify-center hover:cursor-pointer hover:text-[#00a5cf] max-[1080px]:justify-start">
           <Link className="flex" href={linksObj.cart.href}>
             <LuMapPin className="text-2xl" />
             <span className="ml-2">{linksObj.cart.label}</span>
           </Link>
         </div>
-        <div className="flex-auto p-3 flex h-full items-center justify-center hover:cursor-pointer hover:text-red-700 max-[1080px]:justify-start">
+        <div className="flex-auto p-3 flex h-full items-center justify-center hover:cursor-pointer hover:text-[#00a5cf] max-[1080px]:justify-start">
            <Link className="flex" href={linksObj.contact.href}>
               <BsTelephone className="text-2xl" />
               <span className="ml-2">{linksObj.contact.label}</span>
            </Link>
         </div>
-        <div className="flex-auto p-3 flex h-full items-center justify-center hover:cursor-pointer hover:text-red-700 max-[1080px]:justify-start">
+        <div className="flex-auto p-3 flex h-full items-center justify-center hover:cursor-pointer hover:text-[#00a5cf] max-[1080px]:justify-start">
             <Link className="flex" href={linksObj.payments.href}>
               <PiContactlessPayment className="text-2xl" />
               <span className="ml-2">{linksObj.payments.label}</span>
             </Link>
         </div>
-        <UserButton afterSignOutUrl="/"/>
+        <ClientUser/>
       </div>
       <div className={`flex w-32 p-3 h-full md:flex-column space-x-6 justify-center items-center max-[600px]:w-12 max-[1080px]:ml-3 max-[1080px]:justify-self-end`}>
         <span onClick={()=>setStateShow(true)} className="relative flex items-center hover:cursor-pointer">
           <BiShoppingBag className="absolute right-3 text-2xl" />
-          <span className="bg-red-700 z-10 text-white h-5 w-5 flex items-center justify-center rounded-full">
+          <span className="bg-[#00a5cf] z-10 text-white h-5 w-5 flex items-center justify-center rounded-full">
             {ListOrder.invoice_items.length | 0}
           </span>
         </span>
         <button type="button" className="min-[1080px]:hidden text-xxl font-xl" onClick={openMenu}>
-            <RiArrowDownSLine className="text-red-700 text-xxl"/>
+            <RiArrowDownSLine className="text-[#00a5cf] text-xxl"/>
         </button>
       </div>
     </div>

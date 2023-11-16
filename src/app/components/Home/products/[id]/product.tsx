@@ -1,6 +1,5 @@
 "use client"
 import React, { useEffect } from 'react'
-import Link from "next/link";
 import { _productService } from './service'
 import PurchaseButton from '../../public/purchaseButton'
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -48,8 +47,8 @@ export default function _Product({productId}: {productId: number}) {
         </div>
         <div className='w-2/5 flex p-4 flex-col max-[800px]:w-full justify-around'>
           <span className='flex w-full p-4 items-center justify-end'>
-            <AiFillLike className="text-3xl text-red-700"/>
-            <AiOutlineLike className="text-3xl text-red-700"/>
+            <AiFillLike className="text-3xl text-[#00a5cf]"/>
+            <AiOutlineLike className="text-3xl text-[#00a5cf]"/>
           </span>
           <div className='flex flex-col space-y-6'>
             <span className='text-2xl font-semibold'>{product.nome}</span>
@@ -64,11 +63,12 @@ export default function _Product({productId}: {productId: number}) {
           </div>
         </div>
       </div>
+
       <div className='w-full p-4 max-[500px]:p-0 h-auto'>
         <h2 className='text-center p-4 h1'>PRODUTOS COMO A MESMAS CATEGORIAS</h2>
         <hr className='w-full border-2 bg-black-400'/>
         <div className='w-auto flex flex-wrap justify-center'>
-          <ListProducts products={product.category_product.produtos}/>
+          <ListProducts products={product.category_product?.produtos}/>
         </div>
       </div>
     </div>

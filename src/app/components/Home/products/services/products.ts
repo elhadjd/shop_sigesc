@@ -30,7 +30,7 @@ export const ProductsService = () => {
     const getProducts = async(limit:number)=>{
         await routeGet(`/products/${limit}`)
         .then((response) => {
-            setProducts((prevProducts: any)=>[...prevProducts,...response.data.response])
+            setProducts(response.data.response)
         }).catch((err) => {
             console.log(err);
         });

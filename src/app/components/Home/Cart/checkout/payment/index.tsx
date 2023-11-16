@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { CartServices } from '../../services'
-import { useRequestCardContext } from '@/app/contexts/cardContrext'
 import PayPal from './paypal'
 import Visa from './visa'
+import { useClientContext } from '@/app/contexts/clientContext'
 
 export default function Payment() {
   const {getClientActive} = CartServices()
-  const {client} = useRequestCardContext()
+  const {client} = useClientContext()
   useEffect(()=>{
     (async()=>{
       await getClientActive(client)
@@ -15,7 +15,7 @@ export default function Payment() {
   return (
     <>
       <div className='w-full h-40 flex items-center flex-col dark'>
-        <span className='w-full text-red-700 h-20 flex items-center justify-center text-2xl font-base text-center'>
+        <span className='w-full text-[#00a5cf] h-20 flex items-center justify-center text-2xl font-base text-center'>
           <h2>Pagamento</h2>
         </span>
         <div className='flex w-full h-20 justify-around '>
@@ -29,8 +29,8 @@ export default function Payment() {
           </span>
         </div>
       </div>
-      <div className='w-full  h-auto flex justify-center'>
-        <div className='w-1/2'>
+      <div className='w-full bg-white h-auto flex justify-center'>
+        <div className='w-1/2  max-[750px]:w-full'>
           <PayPal/>
           <Visa/>
         </div>

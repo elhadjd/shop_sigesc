@@ -13,7 +13,7 @@ export default function Cart() {
     const {progress,state} = useStateProgressContext()
     return (
         <>
-        <div className='fixed flex flex-col w-96 h-full mt-0 bg-white z-30 right-0'>
+        <div className='fixed flex flex-col w-96 max-[600px]:w-full h-full mt-0 bg-white z-30 right-0'>
             <div className='relative w-full h-full bg-gray-50' dir='ltr'>
                 <div className='grid grid-flow-col justify-stretch bg-white h-16 w-full p-4 items-center'>
                     <span onClick={()=>setStateShow(false)} className='flex justify-center'>
@@ -51,7 +51,7 @@ export default function Cart() {
                         </strong>
                         <h3 className='text-lg font-bold'>{formatToKwanza(ListOrder.TotalInvoice)}</h3>
                     </div>
-                    <Link href={'/checkout'} className='flex w-1/2 justify-center items-center bg-red-700 p-3 rounded text-white font-bold'>Finalizar compra</Link>
+                    <Link href={'/checkout'} className='flex w-1/2 justify-center items-center bg-[#00a5cf] p-3 rounded text-white font-bold'>Finalizar compra</Link>
                 </div>
             </div>
         </div>
