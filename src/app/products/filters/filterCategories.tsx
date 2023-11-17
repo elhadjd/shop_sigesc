@@ -1,6 +1,5 @@
 import { Categories } from '@/app/types/categories'
 import React from 'react'
-import { HiChevronDown } from 'react-icons/hi'
 
 export default function FilterCategories({category}:{category: Categories}) {
   return (

@@ -4,6 +4,8 @@ import ListProducts from './listProducts'
 import { useProductsContext } from '@/app/contexts/productsContext'
 import { ProductsService } from './services/products'
 import { IoMdArrowDropright } from "react-icons/io";
+import Link from 'next/link'
+import { linksObj } from '@/app/links'
 
 export default function Products() {
   const {products,categories} = useProductsContext()
@@ -22,9 +24,9 @@ export default function Products() {
           <div className="mt-3 flex flex-wrap justify-center w-full leading-6">
             {categories.map((category,index)=>(
               <div className='flex flex-col relative w-full' key={index}>
-                <span className='flex flex-row justify-between items-center text-base font-base border-b p-2 hover:bg-gray-100 cursor-pointer'>
-                  {category.name}
-                  {category.sub_categories.length > 0 && (<IoMdArrowDropright className="text-2xl font-bold text-gray-400 border rounded-full hover:bg-[#00a5cf] hover:text-white" onClick={()=>setShowSubCat(showSubCat == index ? undefined : index)}/>)}
+                <span className='flex flex-row space-x-2 justify-between items-center text-base font-base border-b p-2 hover:bg-gray-100 cursor-pointer'>
+                  <Link href={`${linksObj.products.href}/categories/${category.id}`} className='h-full w-full' >{category.name}</Link>
+                  {category.sub_categories.length > 0 && (<IoMdArrowDropright className="flex text-2xl font-bold text-gray-400 border rounded-full hover:bg-[#00a5cf] hover:text-white" onClick={()=>setShowSubCat(showSubCat == index ? undefined : index)}/>)}
                 </span>
                 {
                   showSubCat == index &&

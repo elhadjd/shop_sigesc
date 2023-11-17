@@ -10,7 +10,7 @@ import { Product } from "@/app/types/products";
 export const CartServices = (()=>{
     const {routePost,routeGet,routeDelete} = Requests()
     const {setClient,client} = useClientContext()
-    const {setListOrder} = useRequestCardContext()
+    const {setListOrder,ListOrder} = useRequestCardContext()
     const {setState,setColorIcon} = useStateProgressContext()
     
     const addItem = (async(product: Product,quantity: number,checkout?:string)=>{
@@ -42,7 +42,7 @@ export const CartServices = (()=>{
         .then((response) => {
             if(response.data.message) return toast[response.data.type](response.data.message,{position: 'top-right'})
             setClient({...response.data})
-            setListOrder(client.invoices[0])            
+            setListOrder(response.data.invoices[0])                        
         }).catch((err) => {
             console.log(err);
         }).finally(()=>{

@@ -1,7 +1,8 @@
 import { Requests } from "@/app/Api"
 import { useProductsContext } from "@/app/contexts/productsContext";
+import { Product } from "@/app/types/products";
 export const ProductsService = () => {
-    const {setProducts} = useProductsContext()
+    const {setProducts,products} = useProductsContext()
 
     const breakpointsSlider = {
         1700: {
@@ -26,6 +27,13 @@ export const ProductsService = () => {
         },
     }
 
+    const search = ((name: string)=>{
+        const filter = products.filter((product:Product)=>{
+            return product.nome.toLocaleLowerCase().includes(name.toLocaleLowerCase())
+        })
+        setProducts(filter)
+    })
+
     const {routeGet} = Requests()
     const getProducts = async(limit:number)=>{
         await routeGet(`/products/${limit}`)
@@ -35,5 +43,5 @@ export const ProductsService = () => {
             console.log(err);
         });
     }
-    return { getProducts,breakpointsSlider};
+    return { getProducts,breakpointsSlider,search};
 };
