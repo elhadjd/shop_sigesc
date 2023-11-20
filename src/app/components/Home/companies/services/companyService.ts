@@ -3,7 +3,7 @@ import { useCompanyContext } from "@/app/contexts/companyContext"
 import { Company } from "@/app/types/company"
 import { useState } from "react"
 
-export const companyServices = (()=>{
+export const CompanyServices = (()=>{
     const {company,setCompany} = useCompanyContext()
     const [activeComponent,setActiveComponent] = useState<{title: string,step:number}>({
         step: 0,

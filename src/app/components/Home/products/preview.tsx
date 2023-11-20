@@ -10,7 +10,7 @@ import { useProductsContext } from "@/app/contexts/productsContext";
 
 export default function PreviewProducts() {
   const { getProducts,breakpointsSlider} = ProductsService();
-  const {products} = useProductsContext()
+  const {productsView} = useProductsContext()
   
   useEffect(()=>{
     (async()=>{
@@ -37,7 +37,7 @@ export default function PreviewProducts() {
           modules={[Keyboard, Navigation, Pagination, Scrollbar]}
           className="mySwiper"
         >
-          {products.map((product, index) => (
+          {productsView.map((product, index) => (
             
             <SwiperSlide
                 key={index}

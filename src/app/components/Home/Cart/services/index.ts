@@ -40,7 +40,7 @@ export const CartServices = (()=>{
         const InvoiceId = getCookie('InvoiceId')
         await routePost(`/registerUser/${InvoiceId}`,client)
         .then((response) => {
-            if(response.data.message) return toast[response.data.type](response.data.message,{position: 'top-right'})
+            if(response.data.message) return toast.dark(response.data.message,{position: 'top-right'})
             setClient({...response.data})
             setListOrder(response.data.invoices[0])                        
         }).catch((err) => {

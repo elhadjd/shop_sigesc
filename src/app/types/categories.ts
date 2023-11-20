@@ -9,4 +9,5 @@ export interface Categories{
 }
 export interface SubCategory{
     name: string
+    produtos: Product[]
 }

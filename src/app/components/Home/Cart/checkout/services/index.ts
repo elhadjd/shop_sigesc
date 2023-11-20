@@ -9,7 +9,7 @@ import {toast} from 'react-toastify'
 import { useClientContext } from "@/app/contexts/clientContext"
 export const CheckoutServices = (()=>{
   const {checkout,setCheckout} = useCheckoutContext()
-  const {client} = useClientContext()
+  const {client,setClient,delivery,setDelivery} = useClientContext()
   const {routePost} = Requests()
   const {setState,setColorIcon} = useStateProgressContext()
   const changeStep = ((step: number,event?: React.FormEvent<HTMLFormElement>)=>{
@@ -23,12 +23,22 @@ export const CheckoutServices = (()=>{
   const handlerChangeInputsInfo = ((event: {
     target: { id: string; value: string };
   })=>{
-    checkout.client[event.target.id] = event.target.value
+    setClient(
+      {...client,[event.target.id]: event.target.value}
+    )
+    checkout.client = client
+    setCheckout({...checkout})
   })
   const handlerChangeInputsDelivery = ((event: {
     target: { id: string; value: string };
   })=>{
-    checkout.client.delivery[event.target.id] = event.target.value
+    setDelivery(
+      {...delivery,[event.target.id]: event.target.value}
+    )
+    client.delivery = delivery
+    setClient({...client})
+    checkout.client = client
+    setCheckout({...checkout})
   })
 
   const [steps,setSteps] = useState<StepsType[]>([
@@ -55,7 +65,7 @@ export const CheckoutServices = (()=>{
     setState('submitCheckout')
     await routePost('/checkoutSubmit',checkout)
     .then((response) => {
-      if (response.data.message) return toast[response.data.type](response.data.message,{position: 'TOP-RIGHT'})
+      if (response.data.message) return toast.success(response.data.message,{position: 'top-right'})
       checkout.client = response.data
       checkout.step = 3
       setCheckout({...checkout})

@@ -68,7 +68,7 @@ export default function _Product({productId}: {productId: number}) {
         <h2 className='text-center p-4 h1'>PRODUTOS COMO A MESMAS CATEGORIAS</h2>
         <hr className='w-full border-2 bg-black-400'/>
         <div className='w-auto flex flex-wrap justify-center'>
-          <ListProducts products={product.category_product?.produtos}/>
+          <ListProducts/>
         </div>
       </div>
     </div>

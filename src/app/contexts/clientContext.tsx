@@ -2,11 +2,14 @@
 import React, { ReactNode, createContext, useContext, useState } from "react";
 import { useRequestCardContext } from "./cardContrext";
 import { ClientTypeScript } from "../types/client";
+import { Delivery } from "../types/checkout";
 
 const GlobalClient = createContext<
     {
         client: ClientTypeScript,
-        setClient: React.Dispatch<React.SetStateAction<ClientTypeScript>>
+        setClient: React.Dispatch<ClientTypeScript>,
+        delivery: Delivery,
+        setDelivery: React.Dispatch<Delivery>
     }
  | undefined>(undefined)
 
@@ -24,6 +27,17 @@ interface clientProviderProps {
 
 export const ClientProvider:React.FC<clientProviderProps> = (({children})=>{
     const {ListOrder} = useRequestCardContext()
+    const [delivery,setDelivery] = useState<Delivery>(
+        {
+          id: 0,
+          city: '',
+          county: '',
+          housNumber: '',
+          neighborhood: '',
+          road: '',
+          comment: ''
+        },
+    )
     const clientObject = {
         city: '',
         company_id: 0,
@@ -40,19 +54,11 @@ export const ClientProvider:React.FC<clientProviderProps> = (({children})=>{
         surname: '',
         whatssap: '',
         user_id_clerk: '',
-        delivery: {
-          id: 0,
-          city: '',
-          county: '',
-          housNumber: '',
-          neighborhood: '',
-          road: '',
-          comment: ''
-        },
+        delivery: delivery
     }
     const [client,setClient] = useState<ClientTypeScript>({...clientObject})
     return (
-        <GlobalClient.Provider value={{client,setClient}}>
+        <GlobalClient.Provider value={{client,setClient,delivery,setDelivery}}>
             {children}
         </GlobalClient.Provider>
     )

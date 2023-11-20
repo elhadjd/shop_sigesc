@@ -1,3 +1,5 @@
+import { Categories } from "./categories"
+
 export interface Product{
     id:number,
     nome: string,
@@ -13,7 +15,7 @@ export interface Product{
     estado: number,
     stocks: Stock[],
     product_pictures: Product_picture[],
-    category_product: Category_product
+    category_product: Categories
 }
 
 export interface Stock{
@@ -31,19 +33,3 @@ export interface Product_picture{
     updatedAt: string
 }
 
-export interface Sub_Category{
-    id:number,
-    name: string,
-    image: string,
-    category_id: number,
-    createdAt: string,
-    updatedAt: string
-}
-
-export interface Category_product{
-    id:number,
-    nome: string,
-    image: string,
-    produtos: Product[]
-    Sub_Categories: Sub_Category[]
-}

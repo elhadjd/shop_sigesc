@@ -1,6 +1,6 @@
 "use client"
 import React, { ReactNode, useEffect, useState } from 'react'
-import { companyServices } from './services/companyService'
+import { CompanyServices } from './services/companyService'
 import { LuBoxes } from 'react-icons/lu'
 import {GiVibratingShield} from 'react-icons/gi'
 import { MdMiscellaneousServices } from 'react-icons/md'
@@ -12,7 +12,7 @@ import { Rattings } from './ratting'
 import { useCompanyContext } from '@/app/contexts/companyContext'
 
 export default function Company({companyId}:{companyId:number}) {
-  const {getCompany,activeComponent,setActiveComponent} = companyServices()
+  const {getCompany,activeComponent,setActiveComponent} = CompanyServices()
 
   const {company,setCompany} = useCompanyContext()
   
@@ -22,10 +22,10 @@ export default function Company({companyId}:{companyId:number}) {
     })()
   },[])
   const components:ReactNode[] = [
-    <ListProducts products={company.produtos}/>,
-    <ServicesCompany/>,
-    <Rattings/>,
-    <CompanyContacts/>
+    <ListProducts key={0}/>,
+    <ServicesCompany key={1}/>,
+    <Rattings key={2}/>,
+    <CompanyContacts key={3}/>
   ]
 
   const changeComponent = ((title:string,index:number)=>{

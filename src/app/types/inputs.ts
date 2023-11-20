@@ -1,0 +1,1 @@
+export interface InputsTs{type:string,id:string,placeholder:string}

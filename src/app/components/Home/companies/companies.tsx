@@ -2,11 +2,11 @@
 import React, { useEffect } from 'react'
 import {Swiper,SwiperSlide} from 'swiper/react'
 import { Keyboard, Scrollbar, Navigation, Pagination } from "swiper/modules";
-import { companiesServices } from './services/companiesServices';
+import { CompaniesServices } from './services/companiesServices';
 import Link from 'next/link'
 
 export default function Companies() {
-    const {breakpointsSlider,getCompanies,companies} = companiesServices()
+    const {breakpointsSlider,getCompanies,companies} = CompaniesServices()
     useEffect(()=>{
         (async()=>{
             await getCompanies()

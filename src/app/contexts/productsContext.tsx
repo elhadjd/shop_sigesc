@@ -7,6 +7,8 @@ const GlobalProducts = createContext<
     {
         products: Product[],
         setProducts: React.Dispatch<Product[]>,
+        productsView: Product[],
+        setProductsView: React.Dispatch<Product[]>,
         setCategories: React.Dispatch<Categories[]>,
         categories: Categories[]
     }
@@ -26,9 +28,10 @@ interface productsProviderProps {
 
 export const ProductsProvider:React.FC<productsProviderProps> = (({children})=>{
     const [products,setProducts] = useState<Product[]>([])
+    const [productsView,setProductsView] = useState<Product[]>([])
     const [categories,setCategories] = useState<Categories[]>([])
     return (
-        <GlobalProducts.Provider value={{products,setProducts,categories,setCategories}}>
+        <GlobalProducts.Provider value={{products,setProducts,categories,setCategories,setProductsView,productsView}}>
             {children}
         </GlobalProducts.Provider>
     )

@@ -1,14 +1,21 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import PurchaseButton from '../public/purchaseButton'
 import { formatToKwanza } from '@/lib/currency'
 import Link from 'next/link'
 import { Product } from '@/app/types/products'
+import { ProductsService } from './services/products'
+import { useProductsContext } from '@/app/contexts/productsContext'
 
-export default function ListProducts({products}:{products:Product[]}) {
+export default function ListProducts() {
+    const {productsView} = useProductsContext()
+    const {getProducts} = ProductsService()
+    useEffect(()=>{
+        getProducts(100)
+    },[])
     return (
         <>
-            {products && products.map((product, index) => (
+            {productsView.length > 0 && productsView.map((product, index) => (
                 <div
                 key={product.id}
                 className="flex flex-col w-64 max-[500px]:w-36 max-[600px]:w-40 max-[600px]:m-1 hover:cursor-pointer m-2 hover:border-blue-950 space-y-2 border rounded max-[600px]:p-1 p-3"

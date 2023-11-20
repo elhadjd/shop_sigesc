@@ -1,7 +1,7 @@
 "use client"
 import React, { ReactNode, createContext, useContext, useState } from "react";
 import { Checkout } from "../types/checkout";
-import { useRequestCardContext } from "./cardContrext";
+import { useClientContext } from "./clientContext";
 
 const globalCheckout = createContext<
     {checkout: Checkout,setCheckout: React.Dispatch<Checkout>}
@@ -20,7 +20,7 @@ interface checkoutProviderProps {
 }
 
 export const CheckoutProvider:React.FC<checkoutProviderProps> = (({children})=>{
-    const {client} = useRequestCardContext()
+    const {client} = useClientContext()
     const [checkout,setCheckout] = useState<Checkout>({
         step: 0,
         client: client

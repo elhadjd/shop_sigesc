@@ -19,6 +19,7 @@ export default function FooterBottom() {
                         ))
                     }
                 </div>
+                
             </div>
             <div className='flex-auto w-64 h-full'>
                 <span className='flex text-lg font-sm uppercase'>INSTITUCIONAL</span>

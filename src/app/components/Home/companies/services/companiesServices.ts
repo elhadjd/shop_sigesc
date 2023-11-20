@@ -2,7 +2,7 @@ import { Requests } from "@/app/Api"
 import { Company } from "@/app/types/company"
 import { useState } from "react"
 
-export const companiesServices = (()=>{
+export const CompaniesServices = (()=>{
     const [companies,setCompanies] = useState<Company[]>([])
     const {routeGet} = Requests()
     const breakpointsSlider = {

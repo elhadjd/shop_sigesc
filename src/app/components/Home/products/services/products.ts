@@ -1,9 +1,10 @@
 import { Requests } from "@/app/Api"
 import { useProductsContext } from "@/app/contexts/productsContext";
 import { Product } from "@/app/types/products";
+import { useState } from "react";
 export const ProductsService = () => {
-    const {setProducts,products} = useProductsContext()
-
+    const {setProducts,setProductsView,products} = useProductsContext()
+    const [storeProducts,setStoreProducts] = useState<any>()
     const breakpointsSlider = {
         1700: {
         slidesPerView: 6,
@@ -25,23 +26,19 @@ export const ProductsService = () => {
         slidesPerView: 2,
         slidesPerGroup: 2,
         },
-    }
-
-    const search = ((name: string)=>{
-        const filter = products.filter((product:Product)=>{
-            return product.nome.toLocaleLowerCase().includes(name.toLocaleLowerCase())
-        })
-        setProducts(filter)
-    })
+    } 
 
     const {routeGet} = Requests()
     const getProducts = async(limit:number)=>{
         await routeGet(`/products/${limit}`)
         .then((response) => {
             setProducts(response.data.response)
+            setProductsView(response.data.response)
         }).catch((err) => {
             console.log(err);
         });
     }
-    return { getProducts,breakpointsSlider,search};
+
+    
+    return {getProducts,breakpointsSlider,setProducts,storeProducts,setStoreProducts};
 };

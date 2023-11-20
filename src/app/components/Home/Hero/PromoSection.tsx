@@ -28,7 +28,7 @@ export default function PromoSection() {
       >
         {sliderPromo.map((item, idx) => (
           <SwiperSlide key={idx} className="w-full h-full max-[650px]:h-[200px]">
-            <Link href="/promo">
+            <Link href="#">
               <img src={`/${item.url}`} className="w-full h-full object-cover" alt=""/>
             </Link>
           </SwiperSlide>

@@ -4,10 +4,8 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import AdbIcon from '@mui/icons-material/Adb';
 import { useRequestCardContext } from '@/app/contexts/cardContrext';
 import { CartServices } from '../Home/Cart/services';
 import { useClientContext } from '@/app/contexts/clientContext';
@@ -20,8 +18,8 @@ import { linksObj } from '@/app/links';
 import { PiContactlessPayment } from 'react-icons/pi';
 import { ThemeProvider } from '@emotion/react';
 import ClientUser from '../client/client';
-
-function ResponsiveAppBar() {
+import Search from '../Home/products/search';
+ function ResponsiveAppBar() {
   const {setStateShow,ListOrder} = useRequestCardContext()
    const {getInvoice,getClientActive} = CartServices()
    const {client,setClient} = useClientContext()
@@ -29,28 +27,26 @@ function ResponsiveAppBar() {
    if (!isLoaded) {
      return null;
    }
+ 
    React.useEffect(()=>{
-     (async()=>{
-       if (isSignedIn) {
-         const token = localStorage.getItem('clerk-db-jwt') || null
-         client.name = user.fullName
-         client.email = user.emailAddresses[0].emailAddress
-         client.surname = user.firstName
-         client.token = token
-         client.user_id_clerk = user.id
-         client.image = user.imageUrl
-         setClient({...client})
-         await getClientActive(client)
-       }else{
-         await getInvoice()
-       }
-     })()
- },[])
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+    (async()=>{
+      if (isSignedIn) {
+        const token = localStorage.getItem('clerk-db-jwt') || null
+        client.name = user.fullName || ''
+        client.email = user.emailAddresses[0].emailAddress
+        client.surname = user.firstName || ''
+        client.token = token
+        client.user_id_clerk = user.id
+        client.image = user.imageUrl
+        setClient({...client})
+        await getClientActive(client)
+      }else{
+        await getInvoice()
+      }
+    })()
+   },[user])
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+ 
 
   const darkTheme = createTheme({
     palette: {
@@ -66,7 +62,7 @@ function ResponsiveAppBar() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar elevation={0} sx={{borderBottom: '1px solid'}} position="static">
+      <AppBar elevation={0} sx={{borderBottom: '1px solid',position: 'relative',height: 'auto'}} position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <LocalMallOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -87,24 +83,7 @@ function ResponsiveAppBar() {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: 'block', md: 'none' },
-                }}
-              />
+             
             </Box>
             <LocalMallOutlinedIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
             <Typography
@@ -121,10 +100,11 @@ function ResponsiveAppBar() {
                 letterSpacing: '.3rem',
                 color: 'inherit',
                 textDecoration: 'none' }}>
-              SIGESC
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              
             </Box>
+            <Search/>
             <Box sx={{ flexGrow: 0,display:{md:'flex',wordSpacing: 2} }}>
               <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                 <Link className="flex" href={linksObj.payments.href}>
@@ -141,7 +121,6 @@ function ResponsiveAppBar() {
                   isSignedIn ? (<ClientUser/>):(<Avatar className='flex' alt="Remy Sharp" src="/static/images/avatar/2.jpg" />)
                 }
               </IconButton>
-              
             </Box>
           </Toolbar>
         </Container>

@@ -1,7 +1,12 @@
-import { Categories } from '@/app/types/categories'
-import React from 'react'
 
-export default function FilterCategories({category}:{category: Categories}) {
+import { Categories, SubCategory } from '@/app/types/categories'
+import { Product } from '@/app/types/products'
+import React from 'react'
+interface componentProps{
+  productsSubcategory: (products: Product[])=>void,
+  category: Categories
+}
+export const FilterCategories: React.FC<componentProps> = ({category,productsSubcategory}) => {
   return (
     <div className='flex flex-col w-full h-auto p-4'>
       
@@ -12,7 +17,7 @@ export default function FilterCategories({category}:{category: Categories}) {
         <div className="mt-3 flex flex-wrap justify-center leading-6">
           {
             category.sub_categories.map((item,index)=>(
-              <span key={index} className='ml-2 max-[600px]:ml-0 text-base font-base border-b w-full p-2 hover:bg-gray-100 cursor-pointer'>{item.name}</span>
+              <span key={index} onClick={()=>productsSubcategory(item.produtos)} className='ml-2 max-[600px]:ml-0 text-base font-base border-b w-full p-2 hover:bg-gray-100 cursor-pointer'>{item.name}</span>
             ))
           }
         </div>

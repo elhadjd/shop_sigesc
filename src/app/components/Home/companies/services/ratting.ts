@@ -2,13 +2,13 @@ import { Requests } from "@/app/Api";
 import { useClientContext } from "@/app/contexts/clientContext";
 import { companyRatting } from "@/app/types/company";
 import * as React from "react";
-import { companyServices } from "./companyService";
+import { CompanyServices } from "./companyService";
 import { toast } from "react-toastify";
 
 export const RattingServices = (()=>{
     const {routeGet,routePost} = Requests()
     const {client,setClient} = useClientContext()
-    const {updateCompany} = companyServices()
+    const {updateCompany} = CompanyServices()
     const [form, setForm] = React.useState<companyRatting>({
         comment: '',
         ratting: 0,

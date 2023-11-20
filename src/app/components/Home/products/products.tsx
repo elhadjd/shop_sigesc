@@ -6,14 +6,15 @@ import { ProductsService } from './services/products'
 import { IoMdArrowDropright } from "react-icons/io";
 import Link from 'next/link'
 import { linksObj } from '@/app/links'
+import { Product } from '@/app/types/products'
 
 export default function Products() {
-  const {products,categories} = useProductsContext()
-  const {getProducts} = ProductsService()
+  const {setProductsView,categories,setProducts} = useProductsContext()
   const [showSubCat,setShowSubCat] = useState<number>()
-  useEffect(()=>{
-      getProducts(100)
-  },[])
+  const productsSubcategory = ((products:Product[])=>{
+    setProductsView(products || [])
+  })
+  
   return (
     <div className='flex flex-row max-[650px]:flex-col'>
       <div className='flex w-1/4 max-[650px]:w-full'>
@@ -34,7 +35,7 @@ export default function Products() {
                     <div className='min-[650px]:absolute min-[650px]:mt-10 w-full z-20 rounded bg-white border flex flex-col ml-full ml-36 max-[650px]:ml-0'>
                       {
                         category.sub_categories.map((sub,index)=>(
-                          <span className='text-base font-base border-b p-2 hover:bg-gray-100 cursor-pointer'>{sub.name}</span>
+                          <span key={index} onClick={()=>productsSubcategory(sub.produtos)} className='text-base font-base border-b p-2 hover:bg-gray-100 cursor-pointer'>{sub.name}</span>
                         ))
                       }
                     </div>
@@ -46,7 +47,7 @@ export default function Products() {
         </details>
       </div>
       <div className='flex flex-wrap justify-center w-3/4 max-[650px]:w-full'>
-        <ListProducts products={products}/>
+        <ListProducts/>
       </div>
     </div>
   )

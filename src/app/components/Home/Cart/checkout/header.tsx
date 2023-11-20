@@ -25,9 +25,9 @@ export default function HeaderCheckout() {
     (async()=>{
       if (isSignedIn) {
         const token = localStorage.getItem('clerk-db-jwt') || null
-        client.name = user.fullName
+        client.name = user.fullName || ''
         client.email = user.emailAddresses[0].emailAddress
-        client.surname = user.firstName
+        client.surname = user.firstName || ''
         client.token = token
         client.user_id_clerk = user.id
         client.image = user.imageUrl

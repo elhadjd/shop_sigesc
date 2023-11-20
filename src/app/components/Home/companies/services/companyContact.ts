@@ -4,8 +4,8 @@ import { useCompanyContext } from "@/app/contexts/companyContext"
 import React, { useState } from "react"
 import { useStateProgressContext } from '@/app/contexts/progress'
 import {toast} from 'react-toastify'
-
-export const companyContactService = (()=>{
+interface Inputs{type:string,id:string,placeholder:string}
+export const CompanyContactService = (()=>{
     const {setState} = useStateProgressContext()
     const {routePost} = Requests()
     const {client} = useClientContext()
@@ -25,7 +25,7 @@ export const companyContactService = (()=>{
         message: '',
         tel: ''
     })
-    const inputs = [
+    const inputs:Inputs[] = [
         {
             type: 'text',
             id:'name',

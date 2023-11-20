@@ -2,10 +2,9 @@ import { Requests } from "@/app/Api"
 import { useProductsContext } from "@/app/contexts/productsContext"
 import { Product } from "@/app/types/products"
 import {  useState } from "react"
-import { categoryService } from "../../Hero/categories/service/categoryService"
 
 export const _productService = (()=>{
-    const {category} = categoryService()
+    const {productsView,setProductsView} = useProductsContext()
     const [product,setProduct] = useState<Product>({
         category_product_id: 0,
         company_id: 0,
@@ -24,8 +23,8 @@ export const _productService = (()=>{
         category_product: {
             id: 0,
             image: '',
-            nome: '',
-            Sub_Categories: [],
+            name: '',
+            sub_categories: [],
             produtos: []
         },
     })
@@ -36,6 +35,7 @@ export const _productService = (()=>{
         .then((response) => {
             setProduct({...response.data})
             setImage(product.image)
+            setProductsView({...response.data.category_product.produtos})
         }).catch((err) => {
             console.log(err);
         });

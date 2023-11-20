@@ -13,15 +13,15 @@ export const getBgImage = (async(img:string)=>{
         tempElement.appendChild(image);
 
         // Use a biblioteca html2canvas para renderizar a imagem em um canvas
-        html2canvas(tempElement).then((canvas:any) => {
-            const ctx = canvas.getContext('2d');
+        // html2canvas(tempElement).then((canvas:any) => {
+        //     const ctx = canvas.getContext('2d');
             
-            // Obtenha a cor média do canvas (que representa a imagem)
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-            const averageColor = getAverageColor(imageData);
+        //     // Obtenha a cor média do canvas (que representa a imagem)
+        //     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        //     const averageColor = getAverageColor(imageData);
 
-            console.log('Cor de fundo da imagem:', averageColor);
-        });
+        //     console.log('Cor de fundo da imagem:', averageColor);
+        // });
     }
 
     function getAverageColor(imageData: Uint8ClampedArray): string {
