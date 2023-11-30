@@ -6,6 +6,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { CartServices } from './services'
 import { useStateProgressContext } from '@/app/contexts/progress' 
 import Link from 'next/link'
+import { useClientContext } from '@/app/contexts/clientContext'
 
 export default function Cart() {
     const {setStateShow,ListOrder} = useRequestCardContext()
@@ -24,17 +25,18 @@ export default function Cart() {
                 <div className='flex flex-col overflow-auto scroll-m-0 snap-y p-4 h-[75%] space-y-3'>
                     {
                         ListOrder.invoice_items.map((item,index)=>(
-                        <div key={index} className='flex h-26 scroll-ms-6 snap-end items-center space-x-2 p-1 drop-shadow-lg rounded bg-white'>
+                        <div key={index} className='flex h-26 justify-between scroll-ms-6 snap-end items-center space-x-2 p-1 drop-shadow-lg rounded bg-white'>
                             <img src={`https://geral.sisgesc.net/produtos/image/${item.produto.image}`} alt="" className=' w-[55px] rounded'/>
-                            <div className='flex flex-col w-64 between'>
+                            <div className='flex space-y-1 flex-col w-64 between'>
                                 <span>{item.produto.nome}</span>
-                                <div className='flex justify-around w-full'>
+                                <div className='flex justify-between w-full'>
                                     <span>{item.quantity},00Un(s) </span> X 
-                                    <span>{formatToKwanza(item.produto.preçovenda)}</span>
+                                    <span>{formatToKwanza(item.PriceSold)}</span>
                                 </div>
                                 <strong className='w-full flex justify-end'>{formatToKwanza(item.TotalSold)} </strong>
+                                <Link href={`/companies/${item.produto.company.id}`} className='w-48 font-sm text-base truncate'>{item.produto.company.name}</Link>
                             </div>
-                            <span onClick={()=>state == '' &&removeItem(item.id)} className='flex-auto p-3 font-sm text-lg text-gray-300 hover:text-gray-600 ease-in duration-150 cursor-pointer rounded-full bg-gray-50 hover:text-xl'>
+                            <span onClick={()=>state == '' &&removeItem(item.id)} className='flex p-3 font-sm text-lg text-gray-300 hover:text-gray-600 ease-in duration-150 cursor-pointer rounded-full bg-gray-50 hover:text-xl'>
                                 {
                                     state == `deleteItem${item.id}` ? progress : 
                                     <FiDelete/>

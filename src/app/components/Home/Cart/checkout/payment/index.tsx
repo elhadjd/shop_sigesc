@@ -3,9 +3,11 @@ import { CartServices } from '../../services'
 import PayPal from './paypal'
 import Visa from './visa'
 import { useClientContext } from '@/app/contexts/clientContext'
+import { useRequestCardContext } from '@/app/contexts/cardContrext'
 
 export default function Payment() {
   const {getClientActive} = CartServices()
+  const {ListOrder} = useRequestCardContext()
   const {client} = useClientContext()
   useEffect(()=>{
     (async()=>{
@@ -25,7 +27,7 @@ export default function Payment() {
           </span>
           <span className='flex items-center flex-row space-x-4 text-lg'>
             <strong>Total</strong>
-            <span>{client.invoices[0].TotalInvoice}</span>
+            <span>{ListOrder.TotalInvoice}</span>
           </span>
         </div>
       </div>

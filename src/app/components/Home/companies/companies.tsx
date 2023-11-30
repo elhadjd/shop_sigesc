@@ -60,7 +60,6 @@ export default function Companies() {
                         </SwiperSlide>
                     ))
                 }
-                
             </Swiper>
         </div>
     </div>

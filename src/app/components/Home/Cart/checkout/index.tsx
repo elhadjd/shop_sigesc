@@ -10,7 +10,6 @@ import { CheckoutServices } from './services'
 import { useClientContext } from '@/app/contexts/clientContext'
 
 export default function ReviewCart() {
-  const {client} = useClientContext()
   const {ListOrder} = useRequestCardContext()
   const {addItem} = CartServices()
   const {steps,changeStep} = CheckoutServices()
@@ -28,7 +27,7 @@ export default function ReviewCart() {
         </thead>
         <tbody>
           {
-            client.invoices[0].invoice_items.map((item,index)=>(
+            ListOrder.invoice_items.map((item,index)=>(
               <tr key={index}>
                 <td className='p-4 flex items-center space-x-4'>
                   <span className=' w-[55px] rounded'>

@@ -9,7 +9,7 @@ import { useUser } from "@clerk/nextjs";
 import { BiCheckCircle } from 'react-icons/bi'
 import { useCheckoutContext } from '@/app/contexts/checkout'
 import { useClientContext } from '@/app/contexts/clientContext'
-
+import { useRouter } from 'next/navigation'
 
 export default function HeaderCheckout() {
   const {steps} = CheckoutServices()
@@ -17,12 +17,14 @@ export default function HeaderCheckout() {
   const {getClientActive} = CartServices()
   const { isSignedIn, user, isLoaded } = useUser();
   const {checkout} = useCheckoutContext()
+  const router = useRouter()
   if (!isLoaded) {
     return null;
   }
 
   useEffect(()=>{
     (async()=>{
+      if (!isSignedIn) return router.push('/sign-in')
       if (isSignedIn) {
         const token = localStorage.getItem('clerk-db-jwt') || null
         client.name = user.fullName || ''

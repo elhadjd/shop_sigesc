@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { useClientContext } from '@/app/contexts/clientContext';
+import { useRequestCardContext } from '@/app/contexts/cardContrext';
 declare global {
     interface Window {
       paypal: any;
@@ -9,6 +10,7 @@ declare global {
 export default function PayPal() {
     const [loaded,setLoaded] = useState<boolean>(false)
     const [paid,setPaid] = useState<boolean>(false)
+    const {ListOrder} = useRequestCardContext()
     const {client} = useClientContext()
     useEffect(()=>{
         const id = 'ATht4B6eiCPEp4ptAOiP9JomI_40q97GWyoykjcHRDJTAtRJdqq0Oo-A9k1EQEk-DNjrmbctA0pvAtXN';
@@ -44,7 +46,7 @@ export default function PayPal() {
                       description: client.name,
                       amount: {
                         currency_code: 'USD',
-                        value: client.invoices[0].TotalInvoice,
+                        value: ListOrder.TotalInvoice,
                       },
                     },
                   ],

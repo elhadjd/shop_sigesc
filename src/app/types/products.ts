@@ -1,4 +1,5 @@
 import { Categories } from "./categories"
+import { Company } from "./company"
 
 export interface Product{
     id:number,
@@ -12,6 +13,7 @@ export interface Product{
     imposto: string,
     preçovenda: number,
     preco_medio: number,
+    company: Company,
     estado: number,
     stocks: Stock[],
     product_pictures: Product_picture[],
