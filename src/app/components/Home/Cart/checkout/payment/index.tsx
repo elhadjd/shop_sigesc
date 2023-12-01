@@ -4,8 +4,12 @@ import PayPal from './paypal'
 import Visa from './visa'
 import { useClientContext } from '@/app/contexts/clientContext'
 import { useRequestCardContext } from '@/app/contexts/cardContrext'
+import { CheckoutServices } from '../services'
+import { Span } from 'next/dist/trace'
+import { formatToKwanza } from '@/lib/currency'
 
 export default function Payment() {
+  const {handlerChangeInputsDelivery,insertCheckout,changeStep,selectLocation} = CheckoutServices()
   const {getClientActive} = CartServices()
   const {ListOrder} = useRequestCardContext()
   const {client} = useClientContext()
@@ -22,12 +26,11 @@ export default function Payment() {
         </span>
         <div className='flex w-full h-20 justify-around '>
           <span className='flex items-center flex-row space-x-4 text-lg'>
-            <strong>Cliente:</strong>
             <span>{client.name}</span>
           </span>
           <span className='flex items-center flex-row space-x-4 text-lg'>
-            <strong>Total</strong>
-            <span>{ListOrder.TotalInvoice}</span>
+            <strong>Total a pagar</strong>
+            <span>{formatToKwanza(ListOrder.TotalInvoice)}</span>
           </span>
         </div>
       </div>
@@ -36,6 +39,12 @@ export default function Payment() {
           <PayPal/>
           <Visa/>
         </div>
+      </div>
+      <div className='flex flex-row w-full p-4 justify-between'>
+        <button type='button' className='text-[#00a5cf] w-64 p-2 text-center rounded border' onClick={()=>changeStep(2)}>Voltar</button>
+        <span  className='w-64 bg-[#00a5cf] rounded border p-2 text-white space-x-2'>
+          Aguardar a sua encomenda
+        </span>
       </div>
     </>
     

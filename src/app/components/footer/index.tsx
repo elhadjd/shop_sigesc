@@ -7,18 +7,15 @@ export default function Footer() {
       <div className="flex flex-wrap divide-y w-full divide-dashed space-x-4 max-[1000px]:space-x-0 space-y-2 px-10 py-3 mt-10 bg-gray-100 max-[1000px]:flex-col">
         <div className="flex-auto max-[1000px]:w-full flex-col w-64 space-lt-2 flex-col">
           <span className="flex text-lg font-bold text-[#00a5cf]">
-            GANHE 10% DE DESCONTO
+            GANHE 5% DE DESCONTO
           </span>
           <span className="flex text-base font-bold">
-            Cadastre em nossa Newsletter e ganhe 10% de desconto na sua primeira
+            Cadastre em nossa Newsletter e ganhe 5% de desconto na sua primeira
             compra
           </span>
           <span className="flex text-xs font-base">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-              dolores asperiores est eius adipisci aspernatur distinctio
-              consequuntur non ullam quas corporis facilis praesentium cum,
-              veniam illo vitae natus error eaque.
+              Desfrute de vantagens exclusivas ao se cadastrar em nossa Newsletter! Ao ingressar na nossa comunidade, você automaticamente garante um desconto especial de 5% em sua primeira compra. Mantenha-se atualizado sobre as últimas tendências, lançamentos e ofertas, enquanto economiza em produtos de alta qualidade. Não perca a oportunidade de iniciar sua jornada de compras com uma economia significativa. Cadastre-se agora e descubra como é fácil e gratificante economizar enquanto recebe as últimas novidades diretamente em sua caixa de entrada!
             </p>
           </span>
         </div>

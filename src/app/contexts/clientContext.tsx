@@ -35,7 +35,8 @@ export const ClientProvider:React.FC<clientProviderProps> = (({children})=>{
           housNumber: '',
           neighborhood: '',
           road: '',
-          comment: ''
+          comment: '',
+          localisation: ''
         },
     )
     const clientObject = {

@@ -19,6 +19,7 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.5",
     "axios": "^1.5.1",
     "cookies-next": "^4.0.0",
+    "geolocation": "^0.2.0",
     "next": "^14.0.1",
     "node-vibrant": "^3.2.1-alpha.1",
     "react": "^18.2.0",

@@ -7,24 +7,24 @@ interface CompanyServices{
 export const OurService = (()=>{
     const companyServices: CompanyServices[] = [
         {
-            description: 'Não serviu? Não se preocupe. A primeira troca é por nossa conta.',
+            description: 'Entregamos com rapidez e segurança diretamente no seu endereço. Desfrute da comodidade de receber seus produtos no conforto da sua casa, garantindo uma experiência de compra sem complicações.',
             image: '/services/img/troca.png',
-            name: 'PRIMEIRA TROCA GRÁTIS',
+            name: 'Entrega Domiciliária Rápida',
         },
         {
-            description: 'Queremos fazer com que você tenha a melhor experiência online! Para isso, procuramos sempre realizar promoções com frete grátis com nossos produtos e de nossos parceiros. Fique por dentro de nossas promoções e itens especiais com frete grátis no site, redes sociais e e-mails.',
+            description: 'Oferecemos diversas opções de pagamento para atender às suas preferências. Pague com facilidade no local de entrega ou por transferência, proporcionando conveniência e flexibilidade ao realizar suas compras.',
             image: '/services/img/intrega.png',
-            name: 'RETIRE GRÁTIS',
+            name: 'Opções de Pagamento Flexíveis',
         },
         {
-            description: 'O Pix é mais uma função de pagamento disponível em nosso site. Para utilizá-lo é muito simples. Ao escolher seus produtos e clicar em finalizar sua compra, escolha a opção pix.',
+            description: 'Valorizamos a satisfação dos nossos clientes. Caso seu produto não atenda às suas expectativas, a primeira troca é gratuita. Queremos garantir que sua experiência de compra seja sempre positiva e sem preocupações.',
             image: '/services/img/pix.png',
-            name: 'PAGUE COM O PIX',
+            name: ' Primeira Troca Gratuita',
         },
         {
-            description: 'Queremos fazer com que você tenha a melhor experiência online! Para isso, procuramos sempre realizar promoções com frete grátis com nossos produtos e de nossos parceiros. Fique por dentro de nossas promoções e itens especiais com frete grátis no site, redes sociais e e-mails.',
+            description: 'Proporcionamos a opção de pagamento no momento da entrega, proporcionando maior controle e segurança. Pague com tranquilidade ao receber seus produtos, garantindo a conveniência que você merece.',
             image: '/services/img/page.png',
-            name: 'FRETE GRÁTIS',
+            name: 'Pagamento no Local de Entrega',
         },
     ]
     

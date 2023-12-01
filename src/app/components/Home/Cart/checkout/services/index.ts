@@ -62,6 +62,7 @@ export const CheckoutServices = (()=>{
 
   const insertCheckout = (async(event:React.FormEvent<HTMLFormElement>)=>{
     event.preventDefault();
+    if(checkout.client.delivery.localisation == '') return toast.info('Por favor selecina a sua localisação',{position: 'top-right'})
     setState('submitCheckout')
     await routePost('/checkoutSubmit',checkout)
     .then((response) => {
@@ -75,5 +76,20 @@ export const CheckoutServices = (()=>{
       setState('')
     });
   })
-  return {steps,changeStep,handlerChangeInputsInfo,handlerChangeInputsDelivery,insertCheckout}
+
+  const selectLocation = (()=>{
+    console.log('Ola');
+    
+    if('geolocation' in navigator){
+      navigator.geolocation.getCurrentPosition((position)=>{
+        checkout.client.delivery.localisation = `${position.coords.latitude},${position.coords.longitude}`
+        setCheckout({...checkout})
+      },(error)=>{
+        console.log(error);
+      })
+    }else{
+      alert('Erro ao obter a localisação')
+    }
+  })
+  return {steps,changeStep,handlerChangeInputsInfo,handlerChangeInputsDelivery,insertCheckout,selectLocation}
 })

@@ -17,5 +17,6 @@ export interface Delivery{
     neighborhood: string,
     road: string,
     housNumber: string,
-    comment: string
+    comment: string,
+    localisation: string
 }

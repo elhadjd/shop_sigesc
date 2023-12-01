@@ -4,7 +4,7 @@ import { CheckoutServices } from './services'
 import { useCheckoutContext } from '@/app/contexts/checkout'
 import { useStateProgressContext } from '@/app/contexts/progress'
 export default function Delivery() {
-  const {handlerChangeInputsDelivery,insertCheckout,changeStep} = CheckoutServices()
+  const {handlerChangeInputsDelivery,insertCheckout,changeStep,selectLocation} = CheckoutServices()
   const {checkout} = useCheckoutContext()
   const {progress,state} = useStateProgressContext()
   return (
@@ -13,7 +13,7 @@ export default function Delivery() {
         <div className='flex space-y-2 h-96  w-[600px]'>
           <img src="/delivery/delivery.avif" alt="Delivery" className='h-full w-full'/>
         </div>
-        <div className='flex-auto flex-col space-y-2 h-96 w-96 max-w-md'>
+        <div className='flex-auto flex-col space-y-2 h-auto w-96 max-w-md'>
           <span className='flex justify-center items-center space-x-2'>
             <BsFillPersonVcardFill className="text-2xl text-[#00a5cf]"/>
             <h3 className='p-2 text-center text-base font-leght'>Dados Pesual</h3>
@@ -38,6 +38,10 @@ export default function Delivery() {
             <span className='flex flex-row p-2'>
               <label htmlFor="housNumber" className='flex items-end w-1/4 p-2 text-lg font-light'>Numero de casa:</label>
               <input type="text" placeholder='Numero de casa ' defaultValue={checkout.client.delivery.housNumber} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='housNumber' className='w-3/4 p-2 border outline-red-700 rounded'/>
+            </span>
+            <span className='flex flex-row p-2'>
+              <label htmlFor="location" className='flex items-end w-1/4 p-2 text-lg font-light'>Mapa:</label>
+              <button type="button" onClick={selectLocation} id='location' className='w-3/4 p-2 border outline-red-700 rounded'>{checkout.client.delivery.localisation != '' ? checkout.client.delivery.localisation : 'Sua localisação'}</button>
             </span>
           </div>
         </div>
