@@ -2,22 +2,27 @@
 import React, { useState } from "react"
 import {StepsType} from '@/app/types/checkout'
 import { useCheckoutContext } from "@/app/contexts/checkout"
-import { setCookie } from "cookies-next"
 import { Requests } from "@/app/Api"
 import { useStateProgressContext } from "@/app/contexts/progress"
 import {toast} from 'react-toastify'
 import { useClientContext } from "@/app/contexts/clientContext"
+
+
 export const CheckoutServices = (()=>{
   const {checkout,setCheckout} = useCheckoutContext()
   const {client,setClient,delivery,setDelivery} = useClientContext()
   const {routePost} = Requests()
   const {setState,setColorIcon} = useStateProgressContext()
+
   const changeStep = ((step: number,event?: React.FormEvent<HTMLFormElement>)=>{
     if (event) event.preventDefault()
     checkout.client = client
     checkout.step = step
     setCheckout({...checkout})
-    setCookie('checkout',checkout,{maxAge: 60*60*480})
+    if(step == 2) {
+      client.delivery.comment = delivery.comment
+      setDelivery({...client.delivery})
+    }
   })
 
   const handlerChangeInputsInfo = ((event: {
@@ -32,13 +37,7 @@ export const CheckoutServices = (()=>{
   const handlerChangeInputsDelivery = ((event: {
     target: { id: string; value: string };
   })=>{
-    setDelivery(
-      {...delivery,[event.target.id]: event.target.value}
-    )
-    client.delivery = delivery
-    setClient({...client})
-    checkout.client = client
-    setCheckout({...checkout})
+    setDelivery({...delivery,[event.target.id]: event.target.value})
   })
 
   const [steps,setSteps] = useState<StepsType[]>([
@@ -64,6 +63,11 @@ export const CheckoutServices = (()=>{
     event.preventDefault();
     if(checkout.client.delivery.localisation == '') return toast.info('Por favor selecina a sua localisação',{position: 'top-right'})
     setState('submitCheckout')
+    client.delivery = delivery    
+    setClient({...client})
+    checkout.client = client
+    setCheckout({...checkout})
+
     await routePost('/checkoutSubmit',checkout)
     .then((response) => {
       if (response.data.message) return toast.success(response.data.message,{position: 'top-right'})
@@ -78,8 +82,6 @@ export const CheckoutServices = (()=>{
   })
 
   const selectLocation = (()=>{
-    console.log('Ola');
-    
     if('geolocation' in navigator){
       navigator.geolocation.getCurrentPosition((position)=>{
         checkout.client.delivery.localisation = `${position.coords.latitude},${position.coords.longitude}`

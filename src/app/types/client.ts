@@ -16,6 +16,16 @@ export interface ClientTypeScript{
     state: string,
     invoices: TypeInvoice[]
     delivery: Delivery,
+    currencyClient: currencyClientTs,
     token: string | null,
     user_id_clerk: string | ''
 }
+
+export interface currencyClientTs {
+    id: number,
+    code: string,
+    currency: string,
+    digits: number,
+    number: number,
+    client_id: number,
+  }

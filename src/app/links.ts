@@ -9,45 +9,45 @@ export const linksObj = {
   },
   about: {
     label: "Sobre",
-    href: "/about",
+    href: "/privacy-police/quem-somos",
   },
   contact: {
     label: "Atendimento",
     href: "/contact",
   },
-  payments: {
-    label: "Pagamentos",
-    href: "/payments",
-  },
+  // payments: {
+  //   label: "Pagamentos",
+  //   href: "/payments",
+  // },
   cart: {
     label: "Carrinho",
-    href: "/cart",
+    href: "/checkout",
   },
-  termsOfService: {
-    label: "Termos de Serviço",
-    href: "/terms-of-service",
-  },
+  // termsOfService: {
+  //   label: "Termos de Serviço",
+  //   href: "/terms-of-service",
+  // },
   privacyPolicy: {
     label: "Política de Privacidade",
-    href: "/privacy-policy",
+    href: "/privacy-police",
   },
   cookiePolicy: {
     label: "Política de Cookies",
-    href: "/cookie-policy",
+    href: "#",
   },
   support: {
     label: "Suporte",
-    href: "/support",
+    href: "https://sisgesc.net/contact",
   },
   Information:
   {
     label: "Quem somos",
-    href: ''
+    href: '/privacy-police/quem-somos'
   },
   workedSigesc:
   {
     label: 'Trabalhe conosco',
-    href: '/workedSigesc'
+    href: 'https://sisgesc.net'
   },
   site: {
     label: 'Nosso site',
@@ -67,14 +67,12 @@ export const navLinks = [
   linksObj.home,
   linksObj.about,
   linksObj.contact,
-  linksObj.payments,
   linksObj.cart,
   linksObj.signIn,
   linksObj.signUp,
 ];
 
 export const footerLinks = [
-  linksObj.termsOfService,
   linksObj.privacyPolicy,
   linksObj.cookiePolicy,
   linksObj.site,

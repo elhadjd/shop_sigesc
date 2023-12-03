@@ -33,10 +33,10 @@ export default function CompanyContacts() {
                 }
                 <textarea id='message' required value={form.message} className='p-2 border outline-0 rounded bg-gray-100 max-h-[200px]' onChange={(e)=>handlerChangeInput(e)} placeholder='Mensagen'></textarea>
             </div>
-            <Button className='flex space-x-2' type='submit' variant="contained">
+            <button className='bg-[#00a5cf] w-28 flex space-x-2 p-2 justify-center text-white border rounded' type='submit'>
                 Enviar
                 {state === 'smsCompany' && progress}
-            </Button>
+            </button>
         </form>
     </div>
   )

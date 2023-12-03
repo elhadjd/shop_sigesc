@@ -27,6 +27,25 @@ export const _productService = (()=>{
             sub_categories: [],
             produtos: []
         },
+        company: {
+            activity_type: {
+                name: ''
+            },
+            activity_type_id: 0,
+            city: '',
+            companyRattings: [],
+            country: '',
+            description: '',
+            email: '',
+            house_number:'',
+            id: 0,
+            image: '',
+            manager: 0,
+            name:'',
+            nif: '',phone:'',
+            produtos: [],
+            sede:''        
+        }
     })
     const {routeGet} = Requests()
     const [image,setImage] = useState<string>('')

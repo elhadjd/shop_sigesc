@@ -21,11 +21,11 @@ export default function _Product({productId}: {productId: number}) {
           <span className='w-[100px] flex flex-col overflow-auto max-h-[550px] space-y-2 p-1 bg-white'>
             {
               product.product_pictures.map((item,index)=>(
-                <img key={index} className='h-auto w-auto' onClick={()=>changeImage(item.image)} src={`https://geral.sisgesc.net/produtos/image/${item.image}`} alt="" />
+                <img key={index} className='h-auto w-auto' onClick={()=>changeImage(item.image)} src={`http://sisgesc.com/produtos/image/${item.product_id}/${item.image}`} alt="" />
               ))
             }
           </span>
-          <span className="flex-auto relative max-h-[550px] w-[80%]">
+          <span className="flex max-h-[550px] w-[80%]">
           <Swiper
             spaceBetween={30}
             centeredSlides={true}
@@ -37,8 +37,8 @@ export default function _Product({productId}: {productId: number}) {
             >
               {
                 product.product_pictures.map((item,index)=>(
-                <SwiperSlide key={index} className='flex w-full items-center justify-center'>
-                  <img className="h-full max-h-[550px] w-auto" src={`https://geral.sisgesc.net/produtos/image/${item.image}`} alt={product.nome}/>
+                <SwiperSlide key={index} className='flex flex-row w-full items-center justify-center'>
+                  <img className="h-full max-h-[550px] w-auto" src={`http://sisgesc.com/produtos/image/${item.product_id}/${item.image}`} alt={product.nome}/>
                 </SwiperSlide>
                 ))
               }
@@ -55,7 +55,7 @@ export default function _Product({productId}: {productId: number}) {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti et sunt quas, molestias optio dolorem. Odit veritatis molestiae dolorum cumque sit voluptatibus? Impedit reiciendis possimus quo necessitatibus ratione esse quod?</p>
             <div className='flex space-x-4'>
               <strong>Preço:</strong>
-              <h3>{formatToKwanza(product.preçovenda)}</h3>
+              <h3>{formatToKwanza(product.preçovenda,product.company.currencyCompany?.code)}</h3>
             </div>
           </div>
           <div>

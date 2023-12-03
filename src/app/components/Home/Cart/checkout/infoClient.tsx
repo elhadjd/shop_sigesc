@@ -40,7 +40,7 @@ export default function InfoClient() {
         <div className='flex flex-col space-y-2 h-96 w-96 max-w-md'>
           <span className='flex justify-center items-center space-x-2'>
             <FaRegCommentAlt className="text-2xl text-[#00a5cf]"/>
-            <h3 className='p-2 text-center text-base font-leght'>Dados Pesual</h3>
+            <h3 className='p-2 text-center text-base font-leght'>Messagen para a empresa</h3>
           </span>
           <div className='flex h-full flex-col border p-4 border-[#00a5cf] rounded '>
             <label htmlFor="comment" className='h-full w-full'>
@@ -62,7 +62,7 @@ export default function InfoClient() {
                   </span>
                   <span className='flex p-2 w-full text-light font-base flex-row items-center space-x-2'>
                     <h3 className='w-3/5'>{item.produto.nome} </h3>
-                    <span className='w-2/5 flex justify-end'>{formatToKwanza(item.TotalSold)} </span>
+                    <span className='w-2/5 flex justify-end'>{formatToKwanza(item.TotalSold,item.produto.company.currencyCompany.code)} </span>
                   </span>
                 </div>
               ))
@@ -70,7 +70,7 @@ export default function InfoClient() {
           </div>
           <div className="flex absolute bottom-5 p-4 bg-white w-[92%] text-light items-center justify-between text-lg font-base ml-2 h-16">
             <p>Total:</p>
-            <span>{formatToKwanza(ListOrder.TotalInvoice)}</span>
+            <span>{formatToKwanza(ListOrder.TotalInvoice,ListOrder.invoice_items[0] ?ListOrder.invoice_items[0].produto?.company.currencyCompany.code : 'USD')}</span>
           </div>
         </div>
       </div>

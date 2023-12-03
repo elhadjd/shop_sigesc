@@ -1,10 +1,11 @@
 "use client"
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import ReviewCart from '../components/Home/Cart/checkout'
 import InfoClient from '../components/Home/Cart/checkout/infoClient'
 import Delivery from '../components/Home/Cart/checkout/delivery'
 import Payment from '../components/Home/Cart/checkout/payment'
 import { useCheckoutContext } from '../contexts/checkout'
+import { useClientContext } from '../contexts/clientContext'
 
 export default function Checkout() {
   const components = useRef([
@@ -13,8 +14,12 @@ export default function Checkout() {
     <Delivery key={2}/>,
     <Payment key={3}/>
   ])
-  const { checkout } = useCheckoutContext()
- 
+  const { checkout,setCheckout } = useCheckoutContext()
+  const {client} = useClientContext()
+  useEffect(()=>{
+    checkout.client = client
+    setCheckout({...checkout})
+  },[])
   return (
     <div>
       {

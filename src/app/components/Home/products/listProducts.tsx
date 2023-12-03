@@ -31,7 +31,7 @@ export default function ListProducts() {
                             {product.nome}
                         </Link>
                         <span className="flex max-[500px]:justify-center items-center text-lg max-[600px]:text-base font-bold">
-                            {formatToKwanza(product.preçovenda)}
+                            {formatToKwanza(product.preçovenda,product.company.currencyCompany.code)}
                         </span>
                     </div>
                     <div>

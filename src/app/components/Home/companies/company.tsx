@@ -22,7 +22,9 @@ export default function Company({companyId}:{companyId:number}) {
     })()
   },[])
   const components:ReactNode[] = [
-    <ListProducts key={0}/>,
+    <div className='flex flex-row flex-wrap justify-center'>
+      <ListProducts key={0}/>
+    </div>,
     <ServicesCompany key={1}/>,
     <Rattings key={2}/>,
     <CompanyContacts key={3}/>
@@ -82,7 +84,7 @@ export default function Company({companyId}:{companyId:number}) {
             </summary>
             <div className="mt-3 flex flex-wrap justify-center leading-6">
               {components.map((component,index)=>(
-                activeComponent.step === index && <div key={index}>{component}</div>
+                activeComponent.step === index && <div className='flex justify-center w-full' key={index}>{component}</div>
               ))}
             </div>
           </details>

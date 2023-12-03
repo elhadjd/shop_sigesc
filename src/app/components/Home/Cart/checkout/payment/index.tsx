@@ -30,7 +30,7 @@ export default function Payment() {
           </span>
           <span className='flex items-center flex-row space-x-4 text-lg'>
             <strong>Total a pagar</strong>
-            <span>{formatToKwanza(ListOrder.TotalInvoice)}</span>
+            <span>{formatToKwanza(ListOrder.TotalInvoice,ListOrder.invoice_items[0]?ListOrder.invoice_items[0].produto.company.currencyCompany.code:'USD')}</span>
           </span>
         </div>
       </div>

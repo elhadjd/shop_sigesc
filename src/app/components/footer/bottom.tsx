@@ -13,19 +13,19 @@ export default function FooterBottom() {
   const sociasMedias = [
     {
       icon: <ImFacebook />,
-      href: "www.facebook.com",
+      href: "#",
     },
     {
       icon: <FaLinkedinIn />,
-      href: "",
+      href: "#",
     },
     {
       icon: <FaYoutube />,
-      href: "",
+      href: "#",
     },
     {
       icon: <FiInstagram />,
-      href: "",
+      href: "#",
     },
   ];
 

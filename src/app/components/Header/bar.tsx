@@ -19,6 +19,7 @@ import { PiContactlessPayment } from 'react-icons/pi';
 import { ThemeProvider } from '@emotion/react';
 import ClientUser from '../client/client';
 import Search from '../Home/products/search';
+import ChangeCurrency from './changeCurrency';
  function ResponsiveAppBar() {
   const {setStateShow,ListOrder} = useRequestCardContext()
    const {getClientActive} = CartServices()
@@ -107,11 +108,9 @@ import Search from '../Home/products/search';
             </Box>
             <Search/>
             <Box sx={{ flexGrow: 0,display:{md:'flex',wordSpacing: 2} }}>
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <Link className="flex" href={linksObj.payments.href}>
-                  <PiContactlessPayment />
-                </Link>
-              </IconButton>
+              {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                  <ChangeCurrency />
+              </IconButton> */}
               <IconButton onClick={()=>setStateShow(true)} size="large" aria-label="show 4 new mails" color="inherit">
                 <Badge badgeContent={ListOrder.invoice_items.length} className='flex' color="success">
                   <BiShoppingBag />

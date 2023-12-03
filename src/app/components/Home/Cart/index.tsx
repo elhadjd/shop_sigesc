@@ -31,9 +31,9 @@ export default function Cart() {
                                 <span>{item.produto.nome}</span>
                                 <div className='flex justify-between w-full'>
                                     <span>{item.quantity},00Un(s) </span> X 
-                                    <span>{formatToKwanza(item.PriceSold)}</span>
+                                    <span>{formatToKwanza(item.PriceSold,item.produto.company.currencyCompany.code)}</span>
                                 </div>
-                                <strong className='w-full flex justify-end'>{formatToKwanza(item.TotalSold)} </strong>
+                                <strong className='w-full flex justify-end'>{formatToKwanza(item.TotalSold,item.produto.company.currencyCompany.code)} </strong>
                                 <Link href={`/companies/${item.produto.company.id}`} className='w-48 font-sm text-base truncate'>{item.produto.company.name}</Link>
                             </div>
                             <span onClick={()=>state == '' &&removeItem(item.id)} className='flex p-3 font-sm text-lg text-gray-300 hover:text-gray-600 ease-in duration-150 cursor-pointer rounded-full bg-gray-50 hover:text-xl'>
@@ -51,7 +51,7 @@ export default function Cart() {
                         <strong className='flex'>
                             Total:
                         </strong>
-                        <h3 className='text-lg font-bold'>{formatToKwanza(ListOrder.TotalInvoice)}</h3>
+                        <h3 className='text-lg font-bold'>{formatToKwanza(ListOrder.TotalInvoice,ListOrder.invoice_items[0] ?ListOrder.invoice_items[0].produto?.company.currencyCompany.code : 'USD')}</h3>
                     </div>
                     <Link href={'/checkout'} className='flex w-1/2 justify-center items-center bg-[#00a5cf] p-3 rounded text-white font-bold'>Finalizar compra</Link>
                 </div>

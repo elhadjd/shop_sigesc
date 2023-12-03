@@ -7,7 +7,6 @@ import Link from 'next/link'
 import { linksObj } from '@/app/links'
 import { useStateProgressContext } from '@/app/contexts/progress'
 import { CheckoutServices } from './services'
-import { useClientContext } from '@/app/contexts/clientContext'
 
 export default function ReviewCart() {
   const {ListOrder} = useRequestCardContext()
@@ -35,15 +34,15 @@ export default function ReviewCart() {
                   </span>
                   <span>{item.produto.nome}</span>
                 </td>
-                <td>{formatToKwanza(item.PriceSold)} </td>
+                <td>{formatToKwanza(item.PriceSold,item.produto.company.currencyCompany.code)} </td>
                 <td>
                   <div className='h-full space-x-2 flex w-36 items-center'>
-                    <button type='button' onClick={()=>addItem(item.produto,-1)} className='p-2 rounded text-[#00a5cf]'>-</button>
-                    <input type="text" defaultValue={item.quantity} placeholder='Quantidade' onChange={(e)=>item.quantity = Number(e.target.value)} onBlur={(e)=>addItem(item.produto,Number(e.target.value),'checkout')} className='w-16 text-center border outline-0 rounded'/>
+                    <button type='button' onClick={()=>addItem(item.produto,item.quantity>1?-1:0)} className='p-2 rounded text-[#00a5cf]'>-</button>
+                    <input type="text" defaultValue={item.quantity} disabled value={item.quantity} placeholder='Quantidade' onChange={(e)=>item.quantity = Number(e.target.value)} onBlur={(e)=>addItem(item.produto,Number(e.target.value),'checkout')} className='w-16 text-center border outline-0 rounded'/>
                     <button type='button' onClick={()=>addItem(item.produto,1)} className='p-2 rounded text-[#00a5cf]'>+</button>
                   </div>
                 </td>
-                <td>{formatToKwanza(item.TotalSold)}</td>
+                <td>{formatToKwanza(item.TotalSold,item.produto.company.currencyCompany.code)}</td>
                 <td>
                   {state == `addItem${item.produto.id}` && progress}
                 </td>
@@ -55,11 +54,11 @@ export default function ReviewCart() {
       <div className='w-full flex items-end flex-col text-base font-bold'>
         <div className='flex w-64 h-20 justify-between items-center border-b'>
           <strong>Subtotal: </strong>
-          <span>{formatToKwanza(ListOrder.TotalMerchandise)}</span>
+          <span>{formatToKwanza(ListOrder.TotalMerchandise,ListOrder.invoice_items[0] ? ListOrder.invoice_items[0].produto?.company.currencyCompany.code : 'USD')}</span>
         </div>
         <div className='flex w-64 h-20 items-center justify-between'>
           <strong>Total: </strong>
-          <span>{formatToKwanza(ListOrder.TotalInvoice)}</span>
+          <span>{formatToKwanza(ListOrder.TotalInvoice,ListOrder.invoice_items[0] ?ListOrder.invoice_items[0].produto?.company.currencyCompany.code : 'USD')}</span>
         </div>
       </div>
       <div className='flex p-4 h-20 justify-between items-center'>

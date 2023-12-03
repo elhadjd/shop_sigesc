@@ -1,3 +1,4 @@
+import { ClientTypeScript } from "./client"
 import { Product } from "./products"
 
 export interface Company{
@@ -13,15 +14,26 @@ export interface Company{
     name:string,
     nif:string,
     phone:string,
+    currencyCompany: currencyCompanyTs,
     sede:string,
     description:string,
     produtos: Product[],
     companyRattings: companyRatting[]
 }
 
+export interface currencyCompanyTs {
+    id: number,
+    code: string,
+    currency: string,
+    digits: number,
+    number: number,
+    company_id: number,
+  }
+
 export interface companyRatting{
     company_id: number,
     client_id: number,
+    cliente: ClientTypeScript,
     ratting: number,
     comment: string,
     createdAt: string,

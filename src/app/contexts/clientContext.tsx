@@ -54,6 +54,14 @@ export const ClientProvider:React.FC<clientProviderProps> = (({children})=>{
         state: '',
         surname: '',
         whatssap: '',
+        currencyClient: {
+            code: 'USD',
+            currency: 'USD dollar',
+            digits: 2,
+            number: 0,
+            client_id: 0,
+            id: 0
+        },
         user_id_clerk: '',
         delivery: delivery
     }

@@ -37,7 +37,7 @@ export default function PreviewProducts() {
           modules={[Keyboard, Navigation, Pagination, Scrollbar]}
           className="mySwiper"
         >
-          {productsView.map((product, index) => (
+          {productsView.length > 0 && productsView.map((product, index) => (
             
             <SwiperSlide
                 key={index}
@@ -61,7 +61,7 @@ export default function PreviewProducts() {
                       {product.nome}
                     </Link>
                     <span className="items-center text-lg font-bold">
-                      {formatToKwanza(product.preçovenda)}
+                      {formatToKwanza(product.preçovenda,product.company.currencyCompany.code)}
                     </span>
                   </div>
                   <div className="bg-red-700">

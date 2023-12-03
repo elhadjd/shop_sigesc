@@ -21,6 +21,7 @@ export const CartServices = (()=>{
     const addItem = (async(product: Product,quantity: number,checkout?:string)=>{
         if(!isSignedIn) return router.push('/sign-in')
         const checkoutString = checkout!=undefined?checkout:''
+        if (ListOrder.invoice_items[0] && product.company.currencyCompany.code != ListOrder.invoice_items[0].produto.company.currencyCompany.code) return toast.info('Não é posivel selecionar produtos de moeda diferente') 
         if (client.id == 0 || client.id == null) return toast.info('Precisa efetuar login para adicionar este, se ja fez login por favor atualize o navigador')
         setState(`addItem${product.id}`)
         await routePost(`addProdAtOrder/${quantity}/${client.id}/${checkoutString}`,product)
@@ -86,6 +87,21 @@ export const CartServices = (()=>{
             setState('')
         });
     })
+
+
+    const changeCurrencyClient = (async(currency: {})=>{
+        if(!isSignedIn) return toast.info('Por favor faz login para mudar de moeda',{position: 'top-right'})
+        await routePost(`/changeCurrency/${client.id}`,{currency: currency})
+        .then((response) => {
+            if(response.data.message) return toast.info(response.data.message,{position: 'top-right'})
+            response.data.result.currencyClient = response.data.currencyClient
+            setClient({...response.data.result})
+            setListItems(response.data.result.invoices)
+        }).catch((err) => {
+            if(err.response) toast.error(err.response.data.message,{position: 'top-right'})
+            console.log(err);
+        });
+    })
     
-    return {addItem,removeItem,getClientActive}
+    return {addItem,removeItem,changeCurrencyClient,getClientActive}
 })

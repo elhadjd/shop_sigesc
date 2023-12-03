@@ -41,6 +41,14 @@ export const CompanyProvider:React.FC<companyProviderProps> = (({children})=>{
         produtos:[],
         companyRattings: [],
         sede:'',
+        currencyCompany: {
+            code: 'USD',
+            company_id:0,
+            currency: 'USD dollar',
+            digits:2,
+            id: 0,
+            number: 840
+        }
     })
     return (
         <GlobalCompany.Provider value={{company,setCompany}}>

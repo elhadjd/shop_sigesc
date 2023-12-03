@@ -1,7 +1,39 @@
-import React from "react";
+
+"use client"
+import React, { useState } from "react";
 import FooterBottom from "./bottom";
+import { useClientContext } from "@/app/contexts/clientContext";
+import { Requests } from "@/app/Api";
+import { toast } from "react-toastify";
 
 export default function Footer() {
+  const {client} = useClientContext()
+  const {routePost} = Requests()
+  const [newsletter,setNewsletter] = useState({
+    email: '',
+    genre: ''
+  })
+
+  const changeNewsletter = ((event: any)=>{
+    if(event.target.value === 'm' || event.target.value === 'f') {
+      newsletter.genre = event.target.value
+    }else{
+      newsletter.email = event.target.value
+    }
+    setNewsletter({...newsletter})
+  })
+
+  const handlerSubmitForm = (event:React.FormEvent<HTMLFormElement>)=>{
+    event.preventDefault()
+    routePost('/registerNewsletter',{...newsletter})
+    .then((response) => {
+      if(response.data.message) return toast.info(response.data.message,{position:'top-right'})
+    }).catch((err) => {
+      console.log(err);
+      toast.info(err.response.data.message,{position:'top-right'})
+    });
+  }
+
   return (
     <div className="w-full flex flex-col">
       <div className="flex flex-wrap divide-y w-full divide-dashed space-x-4 max-[1000px]:space-x-0 space-y-2 px-10 py-3 mt-10 bg-gray-100 max-[1000px]:flex-col">
@@ -19,7 +51,7 @@ export default function Footer() {
             </p>
           </span>
         </div>
-        <form className="flex-auto flex flex-nowrap flex-wra w-96 items-center max-[1000px]:w-full">
+        <form onSubmit={handlerSubmitForm} className="flex-auto flex flex-nowrap flex-wra w-96 items-center max-[1000px]:w-full">
           <div className="flex space-x-2 space-y-3 max-[1000px]:space-x-0 w-full max-[750px]:flex-col text-blue-950 justify-between">
             <span className="w-96 flex-col max-[750px]:w-full">
               <label htmlFor="email" className="text-base font-bold">
@@ -27,6 +59,9 @@ export default function Footer() {
               </label>
               <input
                 type="email"
+                defaultValue={client.email}
+                id="email"
+                onClick={(e)=>changeNewsletter(e)}
                 className="flex w-full p-2 border-0 outline-red-700 rounded-lg shadow"
                 placeholder="digite seu email para receber as melhores novidades"
               />
@@ -35,12 +70,12 @@ export default function Footer() {
               <h3>Select genero</h3>
               <span className="flex items-center space-x-2 text-xs justify-center">
                 <span className="flex items-center space-x-1">
-                  <input type="radio" id="femia" />
-                  <label htmlFor="femia">Feminina</label>
+                  <input type="radio" value={'f'} onChange={(e)=>changeNewsletter(e)} checked={newsletter.genre === 'f'} id="f" />
+                  <label htmlFor="f" >Feminina</label>
                 </span>
                 <span className="flex items-center space-x-1">
-                  <input type="radio" id="mal" />
-                  <label htmlFor="mal">Masculino</label>
+                  <input type="radio" id="m" value={'m'} onChange={(e)=>changeNewsletter(e)} checked={newsletter.genre === 'm'}/>
+                  <label htmlFor="m">Masculino</label>
                 </span>
               </span>
             </div>
