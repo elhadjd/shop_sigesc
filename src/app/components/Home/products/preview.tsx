@@ -47,13 +47,13 @@ export default function PreviewProducts() {
                 <Link href={`products/${product.id}`} className="flex h-80 z-0 w-full justify-center items-center">
                   <img className="h-auto" src={`https://geral.sisgesc.net/produtos/image/${product.image}`} alt={product.nome} />
                 </Link>
-                {product.nome && (
+                {/* {product.nome && (
                   <div className="absolute top-10 p-2 rounded bg-[#00a5cf] text-white right-0 w-40 truncate origin-center rotate-45">
                     {product.nome}
                   </div>
-                )}
+                )} */}
                 <div className="z-20 bg-white">
-                  <div className="flex z-50  flex-col bg-white space-y-1">
+                  <div className="flex z-50 flex-col bg-white space-y-1">
                     <span className="font-base font-normal truncate justify-center">
                       {product.nome}
                     </span>
@@ -64,7 +64,7 @@ export default function PreviewProducts() {
                       {formatToKwanza(product.preçovenda,product.company.currencyCompany.code)}
                     </span>
                   </div>
-                  <div className="bg-red-700">
+                  <div className="">
                     <PurchaseButton {...product}/>
                   </div>
                 </div>

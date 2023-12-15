@@ -15,7 +15,8 @@ export const RattingServices = (()=>{
         client_id: client.id,
         company_id: 0,
         createdAt: '',
-        updatedAt: ''
+        updatedAt: '',
+        cliente:client
     });
     const data: {ratting: number,comment: string,date: string}[]= [
         {

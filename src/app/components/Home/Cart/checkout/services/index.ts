@@ -13,13 +13,17 @@ export const CheckoutServices = (()=>{
   const {client,setClient,delivery,setDelivery} = useClientContext()
   const {routePost} = Requests()
   const {setState,setColorIcon} = useStateProgressContext()
-
+  const [location,setLocation] = useState('')
   const changeStep = ((step: number,event?: React.FormEvent<HTMLFormElement>)=>{
     if (event) event.preventDefault()
     checkout.client = client
     checkout.step = step
     setCheckout({...checkout})
+    
     if(step == 2) {
+      if (client.delivery == null) {
+        client.delivery = delivery
+      }
       client.delivery.comment = delivery.comment
       setDelivery({...client.delivery})
     }
@@ -61,14 +65,14 @@ export const CheckoutServices = (()=>{
 
   const insertCheckout = (async(event:React.FormEvent<HTMLFormElement>)=>{
     event.preventDefault();
-    if(checkout.client.delivery.localisation == '') return toast.info('Por favor selecina a sua localisação',{position: 'top-right'})
+    if(location == '') return toast.info('Por favor selecina a sua localisação',{position: 'top-right'})
     setState('submitCheckout')
-    client.delivery = delivery    
+    client.delivery = delivery
     setClient({...client})
     checkout.client = client
     setCheckout({...checkout})
 
-    await routePost('/checkoutSubmit',checkout)
+    await routePost(`/checkoutSubmit/${location}`,checkout)
     .then((response) => {
       if (response.data.message) return toast.success(response.data.message,{position: 'top-right'})
       checkout.client = response.data
@@ -84,8 +88,7 @@ export const CheckoutServices = (()=>{
   const selectLocation = (()=>{
     if('geolocation' in navigator){
       navigator.geolocation.getCurrentPosition((position)=>{
-        checkout.client.delivery.localisation = `${position.coords.latitude},${position.coords.longitude}`
-        setCheckout({...checkout})
+        setLocation(`${position.coords.latitude},${position.coords.longitude}`)
       },(error)=>{
         console.log(error);
       })
@@ -93,5 +96,5 @@ export const CheckoutServices = (()=>{
       alert('Erro ao obter a localisação')
     }
   })
-  return {steps,changeStep,handlerChangeInputsInfo,handlerChangeInputsDelivery,insertCheckout,selectLocation}
+  return {steps,changeStep,handlerChangeInputsInfo,handlerChangeInputsDelivery,location,insertCheckout,selectLocation}
 })

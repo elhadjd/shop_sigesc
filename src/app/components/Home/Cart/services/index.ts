@@ -22,7 +22,9 @@ export const CartServices = (()=>{
         if(!isSignedIn) return router.push('/sign-in')
         const checkoutString = checkout!=undefined?checkout:''
         if (ListOrder.invoice_items[0] && product.company.currencyCompany.code != ListOrder.invoice_items[0].produto.company.currencyCompany.code) return toast.info('Não é posivel selecionar produtos de moeda diferente') 
-        if (client.id == 0 || client.id == null) return toast.info('Precisa efetuar login para adicionar este, se ja fez login por favor atualize o navigador')
+        if (client.id == 0 || client.id == null) {            
+            return toast.info('Precisa efetuar login para adicionar este, se ja fez login por favor atualize o navigador')
+        }
         setState(`addItem${product.id}`)
         await routePost(`addProdAtOrder/${quantity}/${client.id}/${checkoutString}`,product)
         .then((response) => {
@@ -41,8 +43,10 @@ export const CartServices = (()=>{
         await routePost(`/registerUser`,client)
         .then((response) => {
             if(response.data.message) return toast.dark(response.data.message,{position: 'top-right'})
-            setClient({...response.data})
-            setListItems(response.data.invoices)
+            if (response.data != null) {
+                setClient({...response.data})
+                setListItems(response.data.invoices)
+            }
         }).catch((err) => {
             console.log(err);
         }).finally(()=>{
@@ -51,11 +55,12 @@ export const CartServices = (()=>{
     })
 
     const setListItems = (async(orders: TypeInvoice[])=>{
+        if(!orders) return
         ListOrder.TotalInvoice = 0
         ListOrder.RestPayable = 0
         ListOrder.TotalMerchandise = 0
         ListOrder.tax = 0
-        ListOrder.invoice_items = []
+        ListOrder.invoice_items = []        
         orders.forEach(order => {
             ListOrder.TotalInvoice += order.TotalInvoice
             ListOrder.RestPayable += order.RestPayable
@@ -65,7 +70,6 @@ export const CartServices = (()=>{
             ListOrder.tax += order.tax
             ListOrder.DateDue = order.DateDue
             ListOrder.DateOrder = order.DateOrder
-
             order.invoice_items.forEach(item => {
                 ListOrder.invoice_items.push(item)
             });
@@ -97,6 +101,7 @@ export const CartServices = (()=>{
             response.data.result.currencyClient = response.data.currencyClient
             setClient({...response.data.result})
             setListItems(response.data.result.invoices)
+            
         }).catch((err) => {
             if(err.response) toast.error(err.response.data.message,{position: 'top-right'})
             console.log(err);

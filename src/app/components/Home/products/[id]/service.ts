@@ -44,7 +44,15 @@ export const _productService = (()=>{
             name:'',
             nif: '',phone:'',
             produtos: [],
-            sede:''        
+            sede:'',
+            currencyCompany:{
+                code: '',
+                company_id:0,
+                currency:'',
+                digits:2,
+                id:0,
+                number:0
+            }
         }
     })
     const {routeGet} = Requests()
@@ -54,7 +62,7 @@ export const _productService = (()=>{
         .then((response) => {
             setProduct({...response.data})
             setImage(product.image)
-            setProductsView({...response.data.category_product.produtos})
+            if(response.data.category_product!=null)setProductsView({...response.data.category_product.produtos})
         }).catch((err) => {
             console.log(err);
         });

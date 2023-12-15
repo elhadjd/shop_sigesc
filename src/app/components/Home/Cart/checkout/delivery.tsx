@@ -4,7 +4,7 @@ import { CheckoutServices } from './services'
 import { useStateProgressContext } from '@/app/contexts/progress'
 import { useClientContext } from '@/app/contexts/clientContext'
 export default function Delivery() {
-  const {handlerChangeInputsDelivery,insertCheckout,changeStep,selectLocation} = CheckoutServices()
+  const {handlerChangeInputsDelivery,insertCheckout,changeStep,selectLocation,location} = CheckoutServices()
   const {delivery} = useClientContext()
   const {progress,state} = useStateProgressContext()
 
@@ -42,7 +42,7 @@ export default function Delivery() {
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="location" className='flex items-end w-1/4 p-2 text-lg font-light'>Mapa:</label>
-              <button type="button" onClick={selectLocation} id='location' className='w-3/4 p-2 border outline-red-700 rounded'>{delivery.localisation != '' ? delivery.localisation : 'Sua localisação'}</button>
+              <button type="button" onClick={selectLocation} id='location' className='w-3/4 p-2 border outline-red-700 rounded'>{location != '' ? location : 'Sua localisação'}</button>
             </span>
           </div>
         </div>

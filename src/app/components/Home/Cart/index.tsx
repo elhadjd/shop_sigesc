@@ -24,7 +24,7 @@ export default function Cart() {
                 </div>
                 <div className='flex flex-col overflow-auto scroll-m-0 snap-y p-4 h-[75%] space-y-3'>
                     {
-                        ListOrder.invoice_items.map((item,index)=>(
+                       ListOrder.invoice_items && ListOrder.invoice_items.map((item,index)=>(
                         <div key={index} className='flex h-26 justify-between scroll-ms-6 snap-end items-center space-x-2 p-1 drop-shadow-lg rounded bg-white'>
                             <img src={`https://geral.sisgesc.net/produtos/image/${item.produto.image}`} alt="" className=' w-[55px] rounded'/>
                             <div className='flex space-y-1 flex-col w-64 between'>

@@ -15,7 +15,7 @@ export default function _Product({productId}: {productId: number}) {
     })()
   },[])
   return (
-    <div className='w-full h-auto flex flex-col h-auto bg-white'>
+    <div className='w-full select-none h-auto flex flex-col h-auto bg-white'>
       <div className='flex max-[800px]:flex-col h-auto w-full bg-white p-4'>
         <div className='flex w-3/5 max-[800px]:w-full max-[1000px]:w-full flex-row h-full bg-gray-100 '>
           <span className='w-[100px] flex flex-col overflow-auto max-h-[550px] space-y-2 p-1 bg-white'>
@@ -52,7 +52,7 @@ export default function _Product({productId}: {productId: number}) {
           </span>
           <div className='flex flex-col space-y-6'>
             <span className='text-2xl font-semibold'>{product.nome}</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti et sunt quas, molestias optio dolorem. Odit veritatis molestiae dolorum cumque sit voluptatibus? Impedit reiciendis possimus quo necessitatibus ratione esse quod?</p>
+            {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti et sunt quas, molestias optio dolorem. Odit veritatis molestiae dolorum cumque sit voluptatibus? Impedit reiciendis possimus quo necessitatibus ratione esse quod?</p> */}
             <div className='flex space-x-4'>
               <strong>Preço:</strong>
               <h3>{formatToKwanza(product.preçovenda,product.company.currencyCompany?.code)}</h3>
