@@ -3,6 +3,7 @@ import { Company } from "./company"
 
 export interface Product{
     id:number,
+    description: string,
     nome: string,
     company_id: number,
     image: string,
@@ -17,7 +18,13 @@ export interface Product{
     estado: number,
     stocks: Stock[],
     product_pictures: Product_picture[],
-    category_product: Categories
+    category_product: Categories,
+    product_likes: productLikes[]
+}
+
+export interface productLikes{
+    client_id: number,
+    product_id: number,
 }
 
 export interface Stock{

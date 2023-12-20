@@ -8,7 +8,7 @@ import { formatToKwanza } from '@/lib/currency'
 import { AiFillLike, AiOutlineLike } from 'react-icons/ai';
 import ListProducts from '../listProducts';
 export default function _Product({productId}: {productId: number}) {
-  const {getProduct,changeImage,image,product} = _productService()
+  const {getProduct,changeImage,image,product,likeAnComment} = _productService()
   useEffect(()=>{
     (async()=>{
       await getProduct(productId)
@@ -46,13 +46,13 @@ export default function _Product({productId}: {productId: number}) {
           </span>
         </div>
         <div className='w-2/5 flex p-4 flex-col max-[800px]:w-full justify-around'>
-          <span className='flex w-full p-4 items-center justify-end'>
-            <AiFillLike className="text-3xl text-[#00a5cf]"/>
-            <AiOutlineLike className="text-3xl text-[#00a5cf]"/>
-          </span>
+          <div className='flex w-full p-4 items-center justify-end'>
+            <AiFillLike onClick={()=>likeAnComment('like',product)} className="text-3xl cursor-pointer text-[#00a5cf]"/>
+            <span className='w-8 p-1 rounded-full text-center h-8 truncate bg-[#00a5cf] text-white'>{product.product_likes.length}</span>
+          </div>
           <div className='flex flex-col space-y-6'>
             <span className='text-2xl font-semibold'>{product.nome}</span>
-            {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti et sunt quas, molestias optio dolorem. Odit veritatis molestiae dolorum cumque sit voluptatibus? Impedit reiciendis possimus quo necessitatibus ratione esse quod?</p> */}
+            <span>{product.description}</span>
             <div className='flex space-x-4'>
               <strong>Preço:</strong>
               <h3>{formatToKwanza(product.preçovenda,product.company.currencyCompany?.code)}</h3>

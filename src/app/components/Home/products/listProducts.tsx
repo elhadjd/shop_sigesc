@@ -24,12 +24,12 @@ export default function ListProducts() {
                         <img className="h-48 w-auto max-[600px]:h-24 max-[500px]:h-16 px-7" src={`https://geral.sisgesc.net/produtos/image/${product.image}`} alt={product.nome} />
                     </Link>
                     <div className="flex flex-col space-y-1">
-                        <span className="font-base font-normal truncate justify-center">
-                            {product.nome}
-                        </span>
-                        <Link href={`/products/${product.id}`} className="w-full text-ellipsis overflow-hidden h-10 text-sm items-center">
+                        <Link href={`/products/${product.id}`} className="font-base font-normal truncate justify-center">
                             {product.nome}
                         </Link>
+                        <span className="w-full text-ellipsis overflow-hidden h-10 text-sm items-center">
+                            {product.description}
+                        </span>
                         <span className="flex max-[500px]:justify-center items-center text-lg max-[600px]:text-base font-bold">
                             {formatToKwanza(product.preçovenda,product.company.currencyCompany.code)}
                         </span>

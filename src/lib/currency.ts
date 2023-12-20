@@ -4,7 +4,7 @@ export const formatToKwanza = (value: number,code: string): string => {
   const isValidCurrencyCode = /^[A-Z]{3}$/.test(code);
   if (!isValidCurrencyCode) {
     console.error('Código de moeda inválido:', code);
-    return 'Erro na formatação';
+    return '$';
   }
 
   const formatter = new Intl.NumberFormat("pt-AO" || '', {

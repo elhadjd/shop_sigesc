@@ -54,12 +54,12 @@ export default function PreviewProducts() {
                 )} */}
                 <div className="z-20 bg-white">
                   <div className="flex z-50 flex-col bg-white space-y-1">
-                    <span className="font-base font-normal truncate justify-center">
-                      {product.nome}
-                    </span>
-                    <Link href={`products/${product.id}`} className="w-full text-ellipsis overflow-hidden h-10 text-sm items-center">
+                    <Link href={`products/${product.id}`} className="font-base font-normal truncate justify-center">
                       {product.nome}
                     </Link>
+                    <span className="w-full text-ellipsis overflow-hidden h-10 text-sm items-center">
+                      {product.description}
+                    </span>
                     <span className="items-center text-lg font-bold">
                       {formatToKwanza(product.preçovenda,product.company.currencyCompany.code)}
                     </span>

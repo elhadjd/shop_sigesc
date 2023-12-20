@@ -16,18 +16,24 @@ export default function Footer() {
 
   const changeNewsletter = ((event: any)=>{
     if(event.target.value === 'm' || event.target.value === 'f') {
-      newsletter.genre = event.target.value
+      setNewsletter({
+        ...newsletter,
+        'genre': event.target.value,
+      })
     }else{
-      newsletter.email = event.target.value
+      setNewsletter({
+        ...newsletter,
+        'email': event.target.value,
+      })
     }
-    setNewsletter({...newsletter})
   })
 
   const handlerSubmitForm = (event:React.FormEvent<HTMLFormElement>)=>{
     event.preventDefault()
+    if(newsletter.email == "" || newsletter.genre == "") return toast.dark('Por favor preenche todos os campos',{position: "top-right"})
     routePost('/registerNewsletter',{...newsletter})
     .then((response) => {
-      if(response.data.message) return toast.info(response.data.message,{position:'top-right'})
+      if(response.data.message) return toast.dark(response.data.message,{position:'top-right'})
     }).catch((err) => {
       console.log(err);
       toast.info(err.response.data.message,{position:'top-right'})
@@ -59,9 +65,8 @@ export default function Footer() {
               </label>
               <input
                 type="email"
-                defaultValue={client.email}
                 id="email"
-                onClick={(e)=>changeNewsletter(e)}
+                onChange={(e)=>changeNewsletter(e)}
                 className="flex w-full p-2 border-0 outline-red-700 rounded-lg shadow"
                 placeholder="digite seu email para receber as melhores novidades"
               />
