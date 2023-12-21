@@ -35,7 +35,7 @@ export const CartServices = (()=>{
             console.log(err);
         }).finally(()=>{
             setState('')
-            setColorIcon('red-700')
+            setColorIcon('[#00a5cf]')
         });
     })
 

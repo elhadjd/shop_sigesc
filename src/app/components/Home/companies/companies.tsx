@@ -44,7 +44,7 @@ export default function Companies() {
                                     <p className='text-ellipsis overflow-hidden h-full p-2 text-light font-sm'>{company.description}</p> 
                                 </div>
                                 <div className='flex w-1/3 h-full items-center justify-center'>
-                                    <img src={`https:geral.sisgesc.net/company/image/${company.image}`} className='w-24 h-24 rounded-full' alt="" />
+                                    <img src={`http://sisgesc.com/company/image/${company.image}`} className='w-24 h-24 rounded-full' alt="" />
                                 </div>
                             </Link>
                             <div className='h-1/3 flex flex-row space-y-2 justify-around p-2 items-center'>

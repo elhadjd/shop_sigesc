@@ -24,7 +24,7 @@ interface stateProgressProps {
 
 export const StateProgressProvider:React.FC<stateProgressProps> = (({children})=>{
     const [state,setState] = useState<string>('')
-    const [colorIcon,setColorIcon] = useState<string>('red-700')
+    const [colorIcon,setColorIcon] = useState<string>('[#00a5cf]')
     const progress = <LuRefreshCcw className={`progress font-bold ${colorIcon}`}/>
     return (
         <stateProgress.Provider value={{state,setState,progress,colorIcon,setColorIcon}}>

@@ -21,19 +21,19 @@ export default function InfoClient() {
           <div className='flex h-full flex-col border p-2 border-[#00a5cf] rounded '>
             <span className='flex flex-row p-2'>
               <label htmlFor="email" className='flex items-end w-1/4 p-2 text-lg font-light'>E-mail:</label>
-              <input type="email" placeholder='Digite seu email' defaultValue={checkout.client.email} required id='email' onChange={(e)=>handlerChangeInputsInfo(e)} className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="email" placeholder='Digite seu email' defaultValue={checkout.client.email} required id='email' onChange={(e)=>handlerChangeInputsInfo(e)} className='w-3/4 p-2 border outline-[#00a5cf] rounded'/>
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="name" className='flex items-end w-1/4 p-2 text-lg font-light'>Nome:</label>
-              <input type="text" placeholder='Nome' id='name' defaultValue={checkout.client.name} required onChange={(e)=>handlerChangeInputsInfo(e)} className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Nome' id='name' defaultValue={checkout.client.name} required onChange={(e)=>handlerChangeInputsInfo(e)} className='w-3/4 p-2 border outline-[#00a5cf] rounded'/>
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="surname" className='flex items-end w-1/4 p-2 text-lg font-light'>Apelido:</label>
-              <input type="text" placeholder='Apelido' defaultValue={checkout.client.surname} required onChange={(e)=>handlerChangeInputsInfo(e)} id='surname' className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Apelido' defaultValue={checkout.client.surname} required onChange={(e)=>handlerChangeInputsInfo(e)} id='surname' className='w-3/4 p-2 border outline-[#00a5cf] rounded'/>
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="phone" className='flex items-end w-1/4 p-2 text-lg font-light'>Telefone:</label>
-              <input type="text" placeholder='Telefone' id='phone' defaultValue={checkout.client.phone} onChange={(e)=>handlerChangeInputsInfo(e)} required className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Telefone' id='phone' defaultValue={checkout.client.phone} onChange={(e)=>handlerChangeInputsInfo(e)} required className='w-3/4 p-2 border outline-[#00a5cf] rounded'/>
             </span>
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function InfoClient() {
       </div>
       <div className='flex flex-row w-full p-4 justify-between'>
         <button className='text-[#00a5cf] w-64 text-center p-2 rounded border' type='button' onClick={()=>changeStep(0)}>Voltar</button>
-        <button type='submit' className='rounded click:outline-red-700 bg-[#00a5cf] text-white p-2 w-64'>Ir para entrega</button>
+        <button type='submit' className='rounded click:outline-[#00a5cf] bg-[#00a5cf] text-white p-2 w-64'>Ir para entrega</button>
       </div>
     </form>
     

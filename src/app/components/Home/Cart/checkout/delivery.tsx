@@ -22,27 +22,27 @@ export default function Delivery() {
           <div className='flex h-auto flex-col border p-2 border-[#00a5cf] rounded '>
             <span className='flex flex-row p-2'>
               <label htmlFor="city" className='flex items-end w-1/4 p-2 text-lg font-light'>Cidade:</label>
-              <input type="text" placeholder='Cidade' defaultValue={delivery.city} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='city' className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Cidade' defaultValue={delivery.city} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='city' className='w-3/4 p-2 border outline-[#00a5cf] rounded'/>
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="County" className='flex items-end w-1/4 p-2 text-lg font-light'>Municipio:</label>
-              <input type="text" placeholder='Municipio' defaultValue={delivery.county} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='county' className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Municipio' defaultValue={delivery.county} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='county' className='w-3/4 p-2 border outline-[#00a5cf] rounded'/>
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="neighborhood" className='flex items-end w-1/4 p-2 text-lg font-light'>Bairo:</label>
-              <input type="text" placeholder='Bairo' defaultValue={delivery.neighborhood} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='neighborhood' className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Bairo' defaultValue={delivery.neighborhood} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='neighborhood' className='w-3/4 p-2 border outline-[#00a5cf] rounded'/>
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="road" className='flex items-end w-1/4 p-2 text-lg font-light'>Rua:</label>
-              <input type="text" placeholder='Sua ria' defaultValue={delivery.road} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='road' className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Sua ria' defaultValue={delivery.road} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='road' className='w-3/4 p-2 border outline-[#00a5cf] rounded'/>
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="housNumber" className='flex items-end w-1/4 p-2 text-lg font-light'>Numero de casa:</label>
-              <input type="text" placeholder='Numero de casa ' defaultValue={delivery.housNumber} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='housNumber' className='w-3/4 p-2 border outline-red-700 rounded'/>
+              <input type="text" placeholder='Numero de casa ' defaultValue={delivery.housNumber} onChange={(e)=>handlerChangeInputsDelivery(e)} required id='housNumber' className='w-3/4 p-2 border outline-[#00a5cf] rounded'/>
             </span>
             <span className='flex flex-row p-2'>
               <label htmlFor="location" className='flex items-end w-1/4 p-2 text-lg font-light'>Mapa:</label>
-              <button type="button" onClick={selectLocation} id='location' className='w-3/4 p-2 border outline-red-700 rounded'>{location != '' ? location : 'Sua localisação'}</button>
+              <button type="button" onClick={selectLocation} id='location' className='w-3/4 p-2 border outline-[#00a5cf] rounded'>{location != '' ? location : 'Sua localisação'}</button>
             </span>
           </div>
         </div>

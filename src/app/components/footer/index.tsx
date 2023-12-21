@@ -66,8 +66,9 @@ export default function Footer() {
               <input
                 type="email"
                 id="email"
+                defaultValue={client.email}
                 onChange={(e)=>changeNewsletter(e)}
-                className="flex w-full p-2 border-0 outline-red-700 rounded-lg shadow"
+                className="flex w-full p-2 border-0 outline-[#00a5cf] rounded-lg shadow"
                 placeholder="digite seu email para receber as melhores novidades"
               />
             </span>

@@ -21,7 +21,7 @@ export default function ListProducts() {
                 className="flex flex-col w-64 max-[500px]:w-36 max-[600px]:w-40 max-[600px]:m-1 hover:cursor-pointer m-2 hover:border-blue-950 space-y-2 border rounded max-[600px]:p-1 p-3"
                 >
                     <Link href={`/products/${product.id}`} className="flex h-48 max-[600px]:h-24 max-[500px]:h-16 w-full justify-center items-center">
-                        <img className="h-48 w-auto max-[600px]:h-24 max-[500px]:h-16 px-7" src={`https://geral.sisgesc.net/produtos/image/${product.image}`} alt={product.nome} />
+                        <img className="h-48 w-auto max-[600px]:h-24 max-[500px]:h-16 px-7" src={`http://sisgesc.com/produtos/image/${product.image}`} alt={product.nome} />
                     </Link>
                     <div className="flex flex-col space-y-1">
                         <Link href={`/products/${product.id}`} className="font-base font-normal truncate justify-center">

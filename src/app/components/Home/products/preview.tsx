@@ -45,7 +45,7 @@ export default function PreviewProducts() {
               >
               <div>
                 <Link href={`products/${product.id}`} className="flex h-80 z-0 w-full justify-center items-center">
-                  <img className="h-auto" src={`https://geral.sisgesc.net/produtos/image/${product.image}`} alt={product.nome} />
+                  <img className="h-auto" src={`http://sisgesc.com/produtos/image/${product.image}`} alt={product.nome} />
                 </Link>
                 {/* {product.nome && (
                   <div className="absolute top-10 p-2 rounded bg-[#00a5cf] text-white right-0 w-40 truncate origin-center rotate-45">

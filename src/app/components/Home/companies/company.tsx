@@ -64,7 +64,7 @@ export default function Company({companyId}:{companyId:number}) {
           <span className='text-2xl font-bold'>{company?.name}</span>
           <p className='text-ellipsis overflow-hidden h-48 text-light font-sm'>{company?.description}</p>
         </div>
-        <img className='flex justify-end object-none h-auto w-full' src={`https://geral.sisgesc.net/company/image/${company?.image}`} alt="" />
+        <img className='flex justify-end object-none h-auto w-full' src={`http://sisgesc.com/company/image/${company?.image}`} alt="" />
       </div>
       <div className='w-full flex flex-col space-y-2'>
         <div className='grid grid-cols-4 border rounded w-full space-x-2 p-2 '>
