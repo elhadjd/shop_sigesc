@@ -41,7 +41,7 @@ export const AddressServices = ((closeModal:VoidFunction)=>{
         if(window.google){
           return Promise.resolve()
         }
-        const src = `${mapApiJs}?key=AIzaSyBib1_eab9B8nlCawxPLsWZTHc5xgmgb9s&libraries=places&v=weekly`
+        const src = `${mapApiJs}?key=ApiKeys&libraries=places&v=weekly`
         return loadAsyncScript(src)
       }
     
