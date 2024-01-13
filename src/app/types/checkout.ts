@@ -19,4 +19,6 @@ export interface Delivery{
     housNumber: string,
     comment: string,
     localisation: string
+    phone: string,
+    country: string,
 }

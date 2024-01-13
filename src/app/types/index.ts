@@ -1,3 +1,4 @@
+import { Delivery } from "./checkout";
 import { Product } from "./products";
 
 export interface ItemInvoice {
@@ -32,5 +33,6 @@ export interface ItemInvoice {
   DateOrder: string;
   DateDue: string;
   RestPayable: number;
-  invoice_items: ItemInvoice[]
+  invoice_items: ItemInvoice[],
+  delivery: Delivery
 }

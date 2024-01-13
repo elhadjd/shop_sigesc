@@ -10,12 +10,13 @@ export interface ClientTypeScript{
     email: string | '',
     whatssap: string,
     phone: string,
+    default_address: number,
     city: string,
     country: string,
     rua: string,
     state: string,
     invoices: TypeInvoice[]
-    delivery: Delivery,
+    deliveries: Delivery[],
     currencyClient: currencyClientTs,
     token: string | null,
     user_id_clerk: string | ''

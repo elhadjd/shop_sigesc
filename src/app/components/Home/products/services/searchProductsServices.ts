@@ -1,4 +1,4 @@
-import { Requests } from "@/app/Api";
+import { Requests } from "@/app/api";
 import { useProductsContext } from "@/app/contexts/productsContext";
 import { useStateProgressContext } from "@/app/contexts/progress";
 import { Product } from "@/app/types/products";

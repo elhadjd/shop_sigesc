@@ -14,7 +14,7 @@ export default function ReviewCart() {
   const {steps,changeStep} = CheckoutServices()
   const {progress,state} = useStateProgressContext()
   return (
-    <form className='w-full p-4' onSubmit={(e)=>changeStep(1,e)}>
+    <form className='w-full p-4' onSubmit={(e)=>changeStep(1,'personal_info',e)}>
       <table className='table-auto w-full'>
         <thead>
           <tr>
@@ -54,15 +54,15 @@ export default function ReviewCart() {
       <div className='w-full flex items-end flex-col text-base font-bold'>
         <div className='flex w-64 h-20 justify-between items-center border-b'>
           <strong>Subtotal: </strong>
-          <span>{formatToKwanza(ListOrder.TotalMerchandise,ListOrder.invoice_items[0] ? ListOrder.invoice_items[0].produto?.company.currencyCompany.code : 'USD')}</span>
+          <span>{formatToKwanza(ListOrder.TotalMerchandise,ListOrder.invoice_items[0] ? ListOrder.invoice_items[0]?.produto?.company.currencyCompany.code : 'USD')}</span>
         </div>
         <div className='flex w-64 h-20 items-center justify-between'>
           <strong>Total: </strong>
-          <span>{formatToKwanza(ListOrder.TotalInvoice,ListOrder.invoice_items[0] ?ListOrder.invoice_items[0].produto?.company.currencyCompany.code : 'USD')}</span>
+          <span>{formatToKwanza(ListOrder.TotalInvoice,ListOrder.invoice_items[0] ?ListOrder.invoice_items[0]?.produto?.company.currencyCompany.code : 'USD')}</span>
         </div>
       </div>
-      <div className='flex p-4 h-20 justify-between items-center'>
-        <Link href={linksObj.products.href} className='border border-[#00a5cf] flex p-2 rounded text-[#00a5cf] text-base w-64 justify-center'>Continuar a comprar</Link>
+      <div className='flex p-4 h-20 justify-between max-[550px]:space-x-2 items-center'>
+        <Link href={linksObj.products.href} className='border border-[#00a5cf] truncate flex p-2 rounded text-[#00a5cf] text-base w-64 justify-center'>Continuar a comprar</Link>
         <button type='submit' className='bg-[#00a5cf] flex p-2 rounded text-white text-base w-64 justify-center'>Finalizar compra</button>
       </div>
     </form>

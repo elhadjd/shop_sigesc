@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <>
     {
-      pathname == '/checkout' ? (<HeaderCheckout/>):
+      pathname.includes('/checkout') ? (<HeaderCheckout/>) :
       pathname != '/checkout' && 
         (<div className="w-full fixed bg-white z-50 flex flex-col ease-in-out duration-300">
           <HeaderBar/>

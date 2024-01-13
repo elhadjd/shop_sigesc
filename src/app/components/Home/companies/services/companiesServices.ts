@@ -1,4 +1,4 @@
-import { Requests } from "@/app/Api"
+import { Requests } from "@/app/api"
 import { Company } from "@/app/types/company"
 import { useState } from "react"
 

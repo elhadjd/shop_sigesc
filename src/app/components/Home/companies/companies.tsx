@@ -36,15 +36,15 @@ export default function Companies() {
             className="mySwiper"
             >
                 {
-                    companies.map((company)=>(
-                        <SwiperSlide key={company.id} className='flex flex-col max-w-md h-full bg-white shadow border border-gray-100'>
+                    companies.length > 0 && companies.map((company)=>(
+                        <SwiperSlide key={company.id} className='flex w-full flex-col h-full bg-white shadow border border-gray-100'>
                             <Link href={`/companies/${company.id}`} className='flex flex-row h-2/3'>
                                 <div className='w-2/3 p-2 flex flex-col space-y-2 justify-center items-center '>
                                     <span className='text-2xl font-bold h-1/2 truncate w-full'>{company.name}</span>
                                     <p className='text-ellipsis overflow-hidden h-full p-2 text-light font-sm'>{company.description}</p> 
                                 </div>
                                 <div className='flex w-1/3 h-full items-center justify-center'>
-                                    <img src={`http://sisgesc.com/company/image/${company.image}`} className='w-24 h-24 rounded-full' alt="" />
+                                    <img src={`https://geral.sisgesc.net/company/image/${company.image}`} className='w-24 h-24 rounded-full' alt="" />
                                 </div>
                             </Link>
                             <div className='h-1/3 flex flex-row space-y-2 justify-around p-2 items-center'>

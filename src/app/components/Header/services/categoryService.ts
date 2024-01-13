@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import { Requests } from "@/app/Api"
+import { Requests } from "@/app/api"
 import { useProductsContext } from "@/app/contexts/productsContext"
 
 export const useHeader = (()=>{

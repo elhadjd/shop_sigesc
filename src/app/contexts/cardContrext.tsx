@@ -36,7 +36,19 @@ export const RequestCardProvider: React.FC<RequestCardProviderProps> = ({ childr
     tax:0,
     TotalInvoice:0,
     TotalMerchandise:0,
-    user_id:0
+    user_id:0,
+    delivery: {
+      city: '',
+      comment: '',
+      country: '',
+      county: '',
+      housNumber: '',
+      id: 0,
+      localisation: '',
+      neighborhood: '',
+      phone: '',
+      road: ''
+    }
   });
   
   const [stateShow, setStateShow] = useState<boolean>(false)

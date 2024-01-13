@@ -51,9 +51,9 @@ export default function Cart() {
                         <strong className='flex'>
                             Total:
                         </strong>
-                        <h3 className='text-lg font-bold'>{formatToKwanza(ListOrder.TotalInvoice,ListOrder.invoice_items[0] ?ListOrder.invoice_items[0].produto?.company.currencyCompany.code : 'USD')}</h3>
+                        <h3 className='text-lg font-bold'>{formatToKwanza(ListOrder.TotalInvoice,ListOrder.invoice_items[0] ?ListOrder.invoice_items[0]?.produto?.company.currencyCompany.code : 'USD')}</h3>
                     </div>
-                    <Link href={'/checkout'} className='flex w-1/2 justify-center items-center bg-[#00a5cf] p-3 rounded text-white font-bold'>Finalizar compra</Link>
+                    <Link href={'/checkout/review'} className='flex w-1/2 justify-center items-center bg-[#00a5cf] p-3 rounded text-white font-bold'>Finalizar compra</Link>
                 </div>
             </div>
         </div>

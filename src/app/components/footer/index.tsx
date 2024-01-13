@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import FooterBottom from "./bottom";
 import { useClientContext } from "@/app/contexts/clientContext";
-import { Requests } from "@/app/Api";
+import { Requests } from "@/app/api";
 import { toast } from "react-toastify";
 
 export default function Footer() {

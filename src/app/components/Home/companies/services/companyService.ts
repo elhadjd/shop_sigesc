@@ -1,4 +1,4 @@
-import { Requests } from "@/app/Api"
+import { Requests } from "@/app/api"
 import { useCompanyContext } from "@/app/contexts/companyContext"
 import { useProductsContext } from "@/app/contexts/productsContext"
 import { Company } from "@/app/types/company"

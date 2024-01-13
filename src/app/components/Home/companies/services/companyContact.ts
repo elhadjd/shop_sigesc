@@ -1,4 +1,4 @@
-import { Requests } from "@/app/Api"
+import { Requests } from "@/app/api"
 import { useClientContext } from "@/app/contexts/clientContext"
 import { useCompanyContext } from "@/app/contexts/companyContext"
 import React, { useState } from "react"

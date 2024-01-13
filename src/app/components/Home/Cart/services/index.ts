@@ -1,4 +1,4 @@
-import { Requests } from "@/app/Api"
+import { Requests } from "@/app/api"
 import { useRequestCardContext } from "@/app/contexts/cardContrext"
 import { getCookie, setCookie } from 'cookies-next';
 import { toast } from 'react-toastify'
@@ -21,7 +21,7 @@ export const CartServices = (()=>{
     const addItem = (async(product: Product,quantity: number,checkout?:string)=>{
         if(!isSignedIn) return router.push('/sign-in')
         const checkoutString = checkout!=undefined?checkout:''
-        if (ListOrder.invoice_items[0] && product.company.currencyCompany.code != ListOrder.invoice_items[0].produto.company.currencyCompany.code) return toast.info('Não é posivel selecionar produtos de moeda diferente') 
+        if (ListOrder.invoice_items[0] && product.company.currencyCompany.code != ListOrder.invoice_items[0]?.produto?.company.currencyCompany.code) return toast.info('Não é posivel selecionar produtos de moeda diferente') 
         if (client.id == 0 || client.id == null) {            
             return toast.info('Precisa efetuar login para adicionar este, se ja fez login por favor atualize o navigador')
         }

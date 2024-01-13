@@ -7,46 +7,18 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import { useRequestCardContext } from '@/app/contexts/cardContrext';
-import { CartServices } from '../Home/Cart/services';
-import { useClientContext } from '@/app/contexts/clientContext';
 import { useUser } from '@clerk/nextjs';
 import { Badge, createTheme } from '@mui/material';
 import { BiShoppingBag } from 'react-icons/bi';
 import Link from 'next/link';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import { linksObj } from '@/app/links';
-import { PiContactlessPayment } from 'react-icons/pi';
 import { ThemeProvider } from '@emotion/react';
 import ClientUser from '../client/client';
 import Search from '../Home/products/search';
-import ChangeCurrency from './changeCurrency';
  function ResponsiveAppBar() {
   const {setStateShow,ListOrder} = useRequestCardContext()
-   const {getClientActive} = CartServices()
-   const {client,setClient} = useClientContext()
-   const { isSignedIn, user, isLoaded } = useUser();
-   if (!isLoaded) {
-     return null;
-   }
- 
-   React.useEffect(()=>{
-    (async()=>{
-      if (isSignedIn) {
-        const token = localStorage.getItem('clerk-db-jwt') || null
-        client.name = user.fullName || ''
-        client.email = user.emailAddresses[0].emailAddress
-        client.surname = user.firstName || ''
-        client.token = token
-        client.user_id_clerk = user.id
-        client.image = user.imageUrl        
-        setClient({...client})
-        await getClientActive(client)
-      }
-    })()
-   },[user])
-
- 
-
+  const { isSignedIn } = useUser();
   const darkTheme = createTheme({
     palette: {
       mode: 'light',

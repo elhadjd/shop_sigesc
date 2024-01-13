@@ -1,4 +1,4 @@
-import { Requests } from "@/app/Api"
+import { Requests } from "@/app/api"
 import { useProductsContext } from "@/app/contexts/productsContext"
 import { Categories } from "@/app/types/categories"
 import { Product } from "@/app/types/products"

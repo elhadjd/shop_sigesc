@@ -1,4 +1,4 @@
-import { Requests } from "@/app/Api";
+import { Requests } from "@/app/api";
 import { useClientContext } from "@/app/contexts/clientContext";
 import { companyRatting } from "@/app/types/company";
 import * as React from "react";

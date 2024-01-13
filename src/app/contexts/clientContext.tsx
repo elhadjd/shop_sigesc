@@ -36,7 +36,9 @@ export const ClientProvider:React.FC<clientProviderProps> = (({children})=>{
           neighborhood: '',
           road: '',
           comment: '',
-          localisation: ''
+          localisation: '',
+          phone: '',
+          country: ''
         },
     )
     const clientObject = {
@@ -47,6 +49,7 @@ export const ClientProvider:React.FC<clientProviderProps> = (({children})=>{
         id: 0,
         image: '',
         invoices: [ListOrder],
+        default_address: 0,
         name: '',
         token: '',
         phone: '',
@@ -63,7 +66,7 @@ export const ClientProvider:React.FC<clientProviderProps> = (({children})=>{
             id: 0
         },
         user_id_clerk: '',
-        delivery: delivery
+        deliveries: []
     }
     const [client,setClient] = useState<ClientTypeScript>({...clientObject})
     return (

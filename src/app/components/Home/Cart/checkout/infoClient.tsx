@@ -9,9 +9,9 @@ import { useRequestCardContext } from '@/app/contexts/cardContrext'
 export default function InfoClient() {
   const {checkout} = useCheckoutContext()
   const {ListOrder} = useRequestCardContext()
-  const {handlerChangeInputsInfo,handlerChangeInputsDelivery,changeStep} = CheckoutServices()
+  const {handlerChangeInputsInfo,changeStep} = CheckoutServices()
   return (
-    <form onSubmit={(e)=>changeStep(2,e)}>
+    <form onSubmit={(e)=>changeStep(2,'address',e)}>
       <div className='flex flex-row flex-wrap justify-center p-4 h-auto  min-[820px]:space-x-4 max-[600px]:space-y-6'>
         <div className='flex flex-col space-y-2 h-96 w-96 max-w-md'>
           <span className='flex justify-center items-center space-x-2'>
@@ -42,11 +42,11 @@ export default function InfoClient() {
             <FaRegCommentAlt className="text-2xl text-[#00a5cf]"/>
             <h3 className='p-2 text-center text-base font-leght'>Messagen para a empresa</h3>
           </span>
-          <div className='flex h-full flex-col border p-4 border-[#00a5cf] rounded '>
+          {/* <div className='flex h-full flex-col border p-4 border-[#00a5cf] rounded '>
             <label htmlFor="comment" className='h-full w-full'>
-              <textarea name="comment" onChange={(e)=>handlerChangeInputsDelivery(e)} defaultValue={checkout.client.delivery?.comment} className='w-full h-40 max-h-full rounded-md p-2 outline-0 text-base focus:border-dotted focus:border-[#00a5cf] text-light font-min border ' id="comment"></textarea>
+              <textarea name="comment" defaultValue={checkout.client.delivery?.comment} className='w-full h-40 max-h-full rounded-md p-2 outline-0 text-base focus:border-dotted focus:border-[#00a5cf] text-light font-min border ' id="comment"></textarea>
             </label>
-          </div>
+          </div> */}
         </div>
         <div className='flex flex-col space-y-2 relative h-96 w-96 max-w-md'>
           <span className='flex justify-center items-center space-x-2'>
@@ -70,12 +70,12 @@ export default function InfoClient() {
           </div>
           <div className="flex absolute bottom-5 p-4 bg-white w-[92%] text-light items-center justify-between text-lg font-base ml-2 h-16">
             <p>Total:</p>
-            <span>{formatToKwanza(ListOrder.TotalInvoice,ListOrder.invoice_items[0] ?ListOrder.invoice_items[0].produto?.company.currencyCompany.code : 'USD')}</span>
+            <span>{formatToKwanza(ListOrder.TotalInvoice,ListOrder.invoice_items[0] ?ListOrder.invoice_items[0]?.produto?.company.currencyCompany.code : 'USD')}</span>
           </div>
         </div>
       </div>
-      <div className='flex flex-row w-full p-4 justify-between'>
-        <button className='text-[#00a5cf] w-64 text-center p-2 rounded border' type='button' onClick={()=>changeStep(0)}>Voltar</button>
+      <div className='flex flex-row w-full max-[550px]:space-x-2 p-4 justify-between'>
+        <button className='text-[#00a5cf] w-64 text-center p-2 rounded border' type='button' onClick={()=>changeStep(0,'review')}>Voltar</button>
         <button type='submit' className='rounded click:outline-[#00a5cf] bg-[#00a5cf] text-white p-2 w-64'>Ir para entrega</button>
       </div>
     </form>

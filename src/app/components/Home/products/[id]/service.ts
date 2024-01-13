@@ -1,4 +1,4 @@
-import { Requests } from "@/app/Api"
+import { Requests } from "@/app/api"
 import { useProductsContext } from "@/app/contexts/productsContext"
 import { Product } from "@/app/types/products"
 import {  useState } from "react"
@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs"
 import { useClientContext } from "@/app/contexts/clientContext"
 export const _productService = (()=>{
-    const {setProductsView} = useProductsContext()
+    const {setProductsView,setProducts} = useProductsContext()
     const {client} = useClientContext()
     const [product,setProduct] = useState<Product>({
         category_product_id: 0,
@@ -71,7 +71,10 @@ export const _productService = (()=>{
             if(response.data.message) return toast.dark(response.data.message,{position: "top-right"})
             setProduct({...response.data})
             setImage(product.image)
-            if(response.data.category_product!=null)setProductsView({...response.data.category_product.produtos})
+            if(response.data.category_product!=null){
+                setProductsView(response.data.category_product.produtos)
+                setProducts(response.data.category_product.produtos)
+            }
         }).catch((err) => {
             console.log(err);
         });

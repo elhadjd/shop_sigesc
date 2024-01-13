@@ -22,19 +22,21 @@ export default function HeaderCheckout() {
     return null;
   }
 
-  useEffect(()=>{
+  useEffect(()=>{    
     (async()=>{
-      if (!isSignedIn) return router.push('/sign-in')
-      if (isSignedIn) {
-        const token = localStorage.getItem('clerk-db-jwt') || null
-        client.name = user.fullName || ''
-        client.email = user.emailAddresses[0].emailAddress
-        client.surname = user.firstName || ''
-        client.token = token
-        client.user_id_clerk = user.id
-        client.image = user.imageUrl
-        setClient({...client})
-        await getClientActive(client)
+      if(isLoaded){
+        if (isSignedIn) {
+          const token = localStorage.getItem('clerk-db-jwt') || null
+          client.name = user.fullName || ''
+          client.email = user.emailAddresses[0].emailAddress
+          client.surname = user.firstName || ''
+          client.token = token
+          client.user_id_clerk = user.id
+          client.image = user.imageUrl
+          setClient({...client})
+          await getClientActive(client)
+        if (!client.invoices.length) return router.push('/sign-in')
+        }
       }
     })()
   },[user])
